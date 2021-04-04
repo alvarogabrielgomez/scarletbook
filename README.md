@@ -1,5 +1,5 @@
-# scarlet-book
-Basic blog system that every post is a file in markdown
+# Scarletbook
+NodeJS + SQLite + Markdown blog system
 
 ```sh
 npm run start
