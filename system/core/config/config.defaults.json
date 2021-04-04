@@ -3,16 +3,15 @@
     "theme":"wanda",
     "server": {
         "host": "127.0.0.1",
-        "port": 2368,
-        "shutdownTimeout": 60000
-      },
-      "database": {
-        "client": "sqlite3",
-        "connection": {
-          "filename": "/home/alvaro/workspace/workspace/ghost/content/data/ghost-local.db"
-        }
-      },
-      "api": {
-          "version": "v1"
+        "port": 8080
+    },
+    "database": {
+      "client": "sqlite3",
+      "connection": {
+        "filename": "/content/database/scarletbook.sqlite"
       }
+    },
+    "api": {
+        "version": "v1"
+    }
 }
