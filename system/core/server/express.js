@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const helmet = require('helmet');
 const { maintenanceMiddleware } = require('../shared/utils');
 const app = express();
@@ -8,9 +9,8 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-app.set('view engine', 'ejs');
 app.set('maintenance', true);
-app.use('/public', express.static('../../../content/public'));
+app.use('/public', express.static(path.join(process.cwd(), './content/public')));
 app.use(maintenanceMiddleware);
 
 module.exports = app;

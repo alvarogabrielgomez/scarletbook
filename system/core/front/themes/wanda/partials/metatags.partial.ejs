@@ -1,0 +1,27 @@
+<title><%= data.title ? `${data.title} | ${website.title}` : website.title %></title>
+<meta name="description" content="<%= data.description ? `${data.description} ` : website.description %>">
+<meta property="og:description" content="<%= data.description ? `${data.description} ` : website.description %>">
+<meta property="og:title" content="<%= data.title ? `${data.title} | ${website.title}` : website.title %>">
+<meta itemprop="description" content="<%= data.description ? `${data.description} ` : website.description %>">
+<meta property="og:type" content="<%= website.type %>">
+<meta property="og:url" content="<%= data.content ? `${website.url}/${data.slug} ` : website.url %>">
+<meta property="og:image" content="<%= data.heroimage ? `${data.heroimage} ` : website.image %>">
+<meta property="og:image:alt" content="<%= data.description ? `${data.description} ` : website.description %>">
+<meta property="og:site_name" content="<%= website.title %>">
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="<%= data.title ? `${data.title} | ${website.title}` : website.title %>">
+<meta name="twitter:description" content="<%= data.description ? `${data.description} ` : website.description %>">
+<meta name="twitter:image:src" content="<%= data.heroimage ? `${data.heroimage} ` : website.image %>">
+<meta name="twitter:domain" content="<%= data.content ? `${website.url}/${data.slug} ` : website.url %>">
+<% if(website.twitterCard){ %>
+<meta name="twitter:card" content="<%= website.twitterCard %>">
+<% } %>
+<% if(website.twitterSite){ %>
+    <meta name="twitter:site" content="<%= website.twitterSite %>">
+<% } %>
+<% if(website.twitterSite){ %>
+    <meta name="twitter:creator" content="<%= website.twitterCreator %>">
+<% } %>
+<!-- SEO -->
+<link rel="canonical" href="<%= data.content ? `${website.url}/${data.slug} ` : website.url %>">
+<link rel="icon" type="image/png" href="<%= website.favicon %>"/>

@@ -1,18 +1,37 @@
+const path = require('path');
+const Website = require('./server/models/website.model');
+
+function setTheme(server, website) {
+    return new Promise((resolve, reject) => {
+        const themeSelected = website.theme;
+        server.set('view engine', 'ejs');
+        server.set('views', path.join(__dirname, `./front/themes/${themeSelected}/views`));
+        resolve();
+    })
+}
+
+
 /**
   * Init the Scarlet Core
   * @param {object} server      Object loaded with the express server
   * @param {object} config      Object loaded with the nconf
   */
  async function initCore(server, config) {
-    //Test
-    server.get("/", (req, res, next) => {
-        res.json({"message":"Ok"})
-    });
-    // 0 Create ScarletEvent
-    const scarletEvents = require('./server/scarletEvents');
-    // 1 Load Cache Settings
-    // 2 Setting Theme
-    // 3 Setting Router
+    return new Promise(async (resolve, reject) => {
+        
+        // 0 Load Website Config
+        const website = new Website(config.get('website'));
+
+        // 1 Load Cache Settings
+    
+        // 2 Setting Theme
+        await setTheme(server, website);
+    
+        // 3 Setting Router
+        require('./server/router')(server, website).register();
+        
+        resolve();
+    })
 }
 
 /**
