@@ -1,5 +1,5 @@
 # Scarletbook
-NodeJS + SQLite + Markdown blog system
+☲ NodeJS + SQLite + Markdown blog system
 
 ```sh
 npm run start
