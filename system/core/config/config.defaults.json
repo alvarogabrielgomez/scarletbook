@@ -11,6 +11,13 @@
       "client": "sqlite3",
       "connection": {
         "filename": "/content/database/scarletbook.sqlite"
+      },
+      "useNullAsDefault": true,
+      "migrations": {
+        "directory": "/system/core/server/database/migrations"
+      },
+      "seeds": {
+        "directory": "/system/core/server/database/seeds"
       }
     },
     "api": {

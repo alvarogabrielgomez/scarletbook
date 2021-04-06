@@ -16,7 +16,7 @@ function setTheme(server, website) {
   * @param {object} server      Object loaded with the express server
   * @param {object} config      Object loaded with the nconf
   */
- async function initCore(server, config) {
+ async function initCore(server, config, database) {
     return new Promise(async (resolve, reject) => {
         
         // 0 Load Website Config
@@ -28,7 +28,7 @@ function setTheme(server, website) {
         await setTheme(server, website);
     
         // 3 Setting Router
-        require('./server/router')(server, website).register();
+        require('./server/router')(server, website, database).register();
         
         resolve();
     })
@@ -56,12 +56,12 @@ module.exports = async function bootSystem() {
         // Init Database
         console.log('📦 Setting SQLite3 Database...');
         console.log();
-        database = await require('./server/database')();
+        database = await require('./server/database')(config).getDb();
 
         // Set Core
         console.log('🧬 Initializing Scarlet Core...');
         console.log();
-        await initCore(server, config);
+        await initCore(server, config, database);
 
         // Init completed, disabling maintenence mode
         console.log('✅ Init complete, disabling maintenence mode...');

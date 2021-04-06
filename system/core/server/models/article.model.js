@@ -1,7 +1,7 @@
 const BaseModel = require('./base/baseModel');
 
 class Article extends BaseModel {
-    constructor(title, description, heroimage, tags, createdAt, author, category, content) {
+    constructor(title, description, heroimage, tags, createdAt, author, category, content, slug) {
         super();
         this.title = title;
         this.description = description;
@@ -11,7 +11,7 @@ class Article extends BaseModel {
         this.author = author;
         this.category = category;
         this.content = content;
-        this.slug;
+        this.slug = slug;
     }
 
         /**

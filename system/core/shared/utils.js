@@ -12,6 +12,11 @@ const maintenanceMiddleware = (req, res, next) => {
     fs.createReadStream(path.resolve(__dirname, '../front/shared/maintenance.html')).pipe(res);
 };
 
+const convertToAbsolutePath = (_path) => {
+    return path.join(process.cwd(), _path);
+}
+
 module.exports = {
-    maintenanceMiddleware
+    maintenanceMiddleware,
+    convertToAbsolutePath
 }

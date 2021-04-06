@@ -2,7 +2,7 @@ const Article = require('../../models/article.model');
 const BaseController = require('../base/baseController');
 
 class BlogController extends BaseController {
-    async article(req, res) {
+    async show(req, res) {
         try {
             const article = new Article(
                 'Test',
@@ -19,8 +19,12 @@ class BlogController extends BaseController {
         } catch(e){
             return res.status(e.statusCode).send(e.message);
         }
-        }
-    
     }
+
+    edit(req, res) {
+        return res.status(200).send('Not implemented');
+    }
+    
+}
 
 module.exports = BlogController;

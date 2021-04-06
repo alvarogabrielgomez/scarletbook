@@ -3,15 +3,16 @@ const routes = [
 ];
 
 class RouterRegister {
-    constructor(server, website) {
+    constructor(server, website, database) {
         this.server = server,
-        this.website = website
+        this.website = website,
+        this.database = database
     }
     get() { return routes; } 
 
     register() {
         routes.forEach(item => {
-            this.server.use(item.path, require(item.router)(this.website));
+            this.server.use(item.path, require(item.router)(this.website, this.database));
         })
     }
 }

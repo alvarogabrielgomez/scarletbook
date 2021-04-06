@@ -1,6 +1,7 @@
 class BaseController {
-    constructor(website) {
+    constructor(website, database) {
         this.website = website;
+        this.database = database;
     }
 
     /**

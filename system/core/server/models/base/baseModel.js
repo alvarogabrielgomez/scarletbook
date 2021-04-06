@@ -11,6 +11,10 @@ class BaseModel {
     test() {
         console.log('Test Base Model Inherited');
     }
+    
+    find() {
+        console.log('Find');
+    }
 }
 
 module.exports = BaseModel;
