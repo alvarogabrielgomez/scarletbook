@@ -4,17 +4,6 @@ const Articles = require('../../models/articles.model');
 class BlogController extends BaseController {
     async show(req, res) {
         try {
-            // const article = new Article(
-            //     'Test',
-            //     'Description',
-            //     './public/img/stock1.jpg',
-            //     ['Test'],
-            //     new Date().toLocaleDateString(),
-            //     'Alvaro Gabriel',
-            //     'Category Test',
-            //     'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n',
-            // )
-
             const query = await Articles.getPost(req.params.slug);
             console.log(query);
             if (query) {
