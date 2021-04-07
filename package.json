@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node ./index.js",
     "prod": "cross-env NODE_ENV=production node ./index.js",
-    "start:migrate": "node ./index.js --migrate"
+    "start:migrate": "node ./index.js --migrate",
+    "start:seed": "node ./index.js --seed",
+    "start:migrate-seed": "node ./index.js --migrate --seed"
   },
   "keywords": [],
   "author": "Alvaro Gabriel <alvaro@accentiostudios.com>",

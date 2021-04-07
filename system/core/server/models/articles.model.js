@@ -1,6 +1,8 @@
-const BaseModel = require('./base/baseModel');
+const { BaseModel } = require('./base/baseModel');
+const { Model } = require('objection');
+const _ = require('lodash');
 
-class Article extends BaseModel {
+class Articles extends BaseModel {
     constructor(title, description, heroimage, tags, createdAt, author, category, content, slug) {
         super();
         this.title = title;
@@ -14,7 +16,17 @@ class Article extends BaseModel {
         this.slug = slug;
     }
 
-        /**
+    static get tableName(){
+        return 'articles';
+    }
+
+    static async getPost(slug) {
+        let data = await this.query().where({ slug });
+        data[0].tags = JSON.parse(data[0].tags);
+        return JSON.parse(JSON.stringify(data[0]));
+    }
+
+    /**
     * Returns an instance of Article with the content loaded into it.
     * @param {object} content        A object with the markdown content parsed with the yaml-front-matter.
     */
@@ -31,6 +43,7 @@ class Article extends BaseModel {
             
         return this;
     }
+
 }
 
-module.exports = Article;
+module.exports = Articles;

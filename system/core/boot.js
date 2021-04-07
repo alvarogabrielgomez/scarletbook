@@ -44,17 +44,17 @@ module.exports = async function bootSystem() {
 
     try {
         // Load Config
-        console.log('⚙️  Loading configurations...');
+        console.log('⚙️  - Loading configurations...');
         console.log();    
         config = require('./config');
 
         // Load Express Server in Maintenence Mode
-        console.log('☕️ Loading express server in maintenence mode...');
+        console.log('☕️ - Loading express server in maintenence mode...');
         console.log();
         server = await require('./server')(config);
 
         // Init Database
-        console.log('📦 Setting SQLite3 Database...');
+        console.log('📦 - Setting SQLite3 Database...');
         console.log();
         const dbFunctions = await require('./server/database')(config);
         database = await dbFunctions.getDb();
@@ -62,20 +62,22 @@ module.exports = async function bootSystem() {
         // Migrations
         if(config.get('migrate')) {
             await dbFunctions.doMigration();
+        }
+        if(config.get('seed')) {
             await dbFunctions.seed();
         }
 
         // Set Core
-        console.log('🧬 Initializing Scarlet Core...');
+        console.log('🧬 - Initializing Scarlet Core...');
         console.log();
         await initCore(server, config, database);
 
         // Init completed, disabling maintenence mode
-        console.log('✅ Init complete, disabling maintenence mode...');
+        console.log('✅ - Init complete, disabling maintenence mode...');
         console.log();
         server.disable('maintenance');
 
-        console.log(`🏁 Done! => http://${config.get('server:host')}:${config.get('server:port')}`);
+        console.log(`🏁 - Done! => http://${config.get('server:host')}:${config.get('server:port')}`);
         console.log();
 
     } catch (e) {

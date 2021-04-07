@@ -16,12 +16,12 @@
 <body class="wrapper">
     <%- include('../partials/header.partial.ejs') %>
     <main class="main">
-            <div class="hero-section <%= data.heroimage ? 'hero-section-with-bg' : '' %>">
-                <% if(data.heroimage){ %>
+            <div class="hero-section <%= data.hero_image ? 'hero-section-with-bg' : '' %>">
+                <% if(data.hero_image){ %>
                 <div class="hero-section__background">
                     <div class="hero-section__background-frontlight"></div>
                     <picture>
-                        <img class="responsive-picture" src="<%= data.heroimage %>" alt="">
+                        <img class="responsive-picture" src="<%= data.hero_image %>" alt="">
                     </picture>
                 </div>
                 <% } %>
@@ -31,7 +31,7 @@
                         <h1 class="hero-section__title"><%= data.title %></h1>
                         <div class="hero-section__row">
                             <span class="hero-section__date">
-                                Actualizado en <%= data.createdAt %>
+                                Actualizado en <%= data.created_at %>
                             </span>
                             <span class="hero-section__author">
                              Por <%= data.author %>
@@ -45,6 +45,7 @@
                     <article class="main-section__article">
                         <%- data.content %> 
 
+                        <% if(data.tags.length > 0){ %>
                         <div class="main-section__article-tags">
                             <ul>
                                 <li><strong>Más</strong></li>
@@ -53,6 +54,7 @@
                                 <% } %>
                             </ul>
                         </div>
+                        <% } %>
                     </article>
                     <aside class="main-section__aside">
                         

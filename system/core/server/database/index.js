@@ -2,8 +2,8 @@ const knex = require('knex');
 const path = require('path');
 const utils = require('../../shared/utils');
 const utilNode = require('util');
-const migrate = require('./init-migration');
 const exec = utilNode.promisify(require('child_process').exec);
+const { Model } = require('objection');
 
 module.exports = (config) => {    
     
@@ -29,6 +29,7 @@ module.exports = (config) => {
             let knexInstance;
             if (!knexInstance && config.get('database')) {
                 knexInstance = knex(getDbConfig());
+                Model.knex(knexInstance);
                 resolve(knexInstance);
             }
             resolve(knexInstance);
@@ -40,21 +41,21 @@ module.exports = (config) => {
         process.chdir(process.cwd());
         return new Promise(async (resolve, reject) => {
             try {
-                console.log('📝 Migrating database...');
+                console.log('📝 - Migrating database...');
                 console.log();
                 await exec('./node_modules/knex/bin/cli.js migrate:latest');
-                console.log('✅ Database Migrated.');
+                console.log('✅ - Database Migrated.');
                 console.log();
                 resolve(knexInstance); 
             } catch (e) {
                 try {
                     // Try rollback
-                    console.error('📝 ERROR: Rolling back...');
+                    console.error('📝 - ERROR: Rolling back...');
                     console.log();
                     await exec('./node_modules/knex/bin/cli.js migrate:rollback');
                     reject(e);
                 } catch (e2) {
-                    console.error('📝 ERROR: Cant be rollbacked');
+                    console.error('📝 - ERROR: Cant be rollbacked');
                     console.log();
                     reject({e2, e});
                 }
@@ -65,10 +66,10 @@ module.exports = (config) => {
     function seed() {
         return new Promise(async (resolve, reject) => {
             try {
-                console.log('📝 Seeding database...');
+                console.log('📝 - Seeding database...');
                 console.log();
                 await exec('./node_modules/knex/bin/cli.js seed:run');
-                console.log('✅ Databese seeded.');
+                console.log('✅ - Database seeded.');
                 console.log();
                 resolve();
             } catch (e) {
