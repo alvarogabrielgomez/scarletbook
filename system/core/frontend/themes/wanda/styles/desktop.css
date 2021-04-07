@@ -1,0 +1,5 @@
+.main-section__content{
+    display: grid;
+    grid-template-columns: 70% auto;
+    grid-gap: 30px;
+}

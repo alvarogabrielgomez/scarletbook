@@ -1,6 +1,22 @@
 const { BaseModel } = require('./base/baseModel');
 const { Model } = require('objection');
 const _ = require('lodash');
+const hljs = require('highlight.js');
+const md = require('markdown-it')({
+    html: true,
+    linkify: true,
+    typographer: true,
+    highlight: (str, lang) => {
+        if(lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(str, {
+                    language: lang
+                }).value;
+            } catch(e) {}
+        }
+        return ''; // use external default escaping
+    }
+});
 
 class Articles extends BaseModel {
     constructor(title, description, heroimage, tags, createdAt, author, category, content, slug) {
@@ -20,10 +36,22 @@ class Articles extends BaseModel {
         return 'articles';
     }
 
-    static async getPost(slug) {
+    static async get(slug) {
+        // Getting from Database using Objection.js
         let data = await this.query().where({ slug });
-        data[0].tags = JSON.parse(data[0].tags);
-        return JSON.parse(JSON.stringify(data[0]));
+        // If exists
+        if (data[0]) {
+            // Parse tags JSON object
+            data[0].tags = JSON.parse(data[0].tags);
+            // Parse Markdown string into html string
+            data[0].content = md.render(data[0].content);
+            // Just in case
+            data = JSON.parse(JSON.stringify(data[0]));
+        } else {
+            // Return null to controller
+            data = null;
+        }
+        return data;
     }
 
     /**

@@ -13,7 +13,7 @@
 }
 
 html {
-    font-size: 16px;
+    font-size: 62.5%;
     font-family: 'Lato', sans-serif;
     line-height: 1.7rem;
     background-color: var(--color-bg);
@@ -21,6 +21,8 @@ html {
 body {
     padding: 0;
     margin: 0;
+    font-size: 1.6rem;
+    line-height: 2.0em;
 }
 
 a {
@@ -29,7 +31,20 @@ a {
 
 h1, h2, h3, h4, h5 {
     font-family: 'Space Grotesk', sans-serif;
-    line-height: 1em;
+    line-height: 1.3em;
+}
+
+h1 {
+    font-size:3rem;
+}
+h2 {
+    font-size:calc(3rem * 0.618); 
+}
+h3 {
+    font-size:calc(3rem * 0.3819); 
+}
+h4 {
+    font-size:calc(3rem * 0.2360); 
 }
 
 article img {
@@ -121,9 +136,7 @@ code {
     line-height: 1.2em;
 }
 .hero-section__title {
-    margin: 1.3rem 0 1.2rem 0;
-    font-size: 2.3rem;
-    line-height: 1.2em;
+    margin: 1rem 0 1rem 0;
 }
 .hero-section__row {
     display:flex;
@@ -139,11 +152,11 @@ code {
     margin: 0;
 }
 .hero-section__date, .hero-section__author {
-    font-size: 92%;
+    font-size: 1.25rem;
 }
 
 .main-section {
-    padding-top: 1.23rem;
+    padding-top: 2rem;
     box-sizing: border-box;
     padding-left: var(--padding-viewport);
     padding-right: var(--padding-viewport);
@@ -160,9 +173,9 @@ code {
 .main-section__article-tags {
     border-bottom: 1px solid var(--color-line);
     width: 100%;
-    padding: 1.4rem 0;
-    margin-bottom: 1rem;
-    font-size: 80%;
+    padding: 2.5rem 0;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
 }
 
 .main-section__article-tags ul {
@@ -214,13 +227,13 @@ code {
 
 .header__content {
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 27px 1fr auto;
+    grid-gap: 1rem;
+    grid-template-columns: 2.7rem 1fr auto;
     grid-auto-flow: row dense;
     height: inherit;
     margin: auto;
     max-width: var(--max-width-container);
-    padding: 12px 0;
+    padding: 1.2rem 0;
 }
 .header__brand {
     display: flex;
@@ -313,7 +326,6 @@ code {
 .footer__menu-item-header {
     display: block;
     text-decoration: none;
-    font-size: 100%;
     padding-bottom: 6px;
     margin-bottom: 1.3rem;
     border-bottom: 1px solid var(--color-line);
@@ -326,7 +338,7 @@ code {
     text-decoration: none;
     color: var(--color-text);
     font-weight: bold;
-    line-height: 1.7rem;
+    line-height: 1.7em;
     transition: all .2s cubic-bezier(1, 0, 0, 1);
 }
 .footer__menu-subitem li a:hover {
@@ -351,7 +363,7 @@ code {
 
 @media (min-width: 600px) {
     html {
-        font-size: 19px;
+        /* font-size: 19px; */
     }
 
     article img {

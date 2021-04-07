@@ -1,0 +1,71 @@
+{{!-- title --}}
+{{#if title}}
+<title>{{title}} | {{@website.title}}</title>
+<meta property="og:title" content="{{title}} | {{@website.title}}">
+<meta property="og:site_name" content="{{title}} | {{@website.title}}">
+<meta name="twitter:title" content="{{title}} | {{@website.title}}">
+{{else}}
+<title>{{@website.title}}</title>
+<meta property="og:title" content="{{@website.title}}">
+<meta property="og:site_name" content="{{@website.title}}">
+<meta name="twitter:title" content="{{@website.title}}">
+{{/if}}
+
+{{!-- description --}}
+{{#if description}}
+<meta name="description" content="{{description}}">
+<meta property="og:description" content="{{description}}">
+<meta name="twitter:description" content="{{description}}">
+{{else}}
+<meta name="description" content="{{@website.description}}">
+<meta property="og:description" content="{{@website.description}}">
+<meta name="twitter:description" content="{{@website.description}}">
+{{/if}}
+
+{{!-- type --}}
+<meta property="og:type" content="{{@website.type}}">
+
+{{!-- url --}}
+{{#if content}}
+<meta property="og:url" content="{{@website.url}}/{{slug}}">
+<meta name="twitter:domain" content="{{@website.url}}/{{slug}}">
+{{else}}
+<meta property="og:url" content="{{@website.url}}">
+<meta name="twitter:domain" content="{{@website.url}}">
+{{/if}}
+
+{{!-- robots --}}
+<meta name="robots" content="index, follow">
+
+{{!-- image --}}
+{{#if hero_image}}
+<meta property="og:image" content="{{hero_image}}">
+<meta property="og:image:alt" content="{{description}}">
+<meta name="twitter:image:src" content="{{hero_image}}">
+{{else}}
+<meta property="og:image" content="{{@website.image}}">
+<meta property="og:image:alt" content="{{@website.description}}">
+<meta name="twitter:image:src" content="{{@website.image}}">
+{{/if}}
+
+{{!-- twittercard --}}
+{{#if @website.twitterCard}}
+<meta name="twitter:card" content="{{@website.twitterCard}}">
+{{/if}}
+{{#if @website.twitterSite}}
+<meta name="twitter:site" content="{{@website.twitterSite}}">
+{{/if}}
+{{#if @website.twitterCreator}}
+    <meta name="twitter:creator" content="{{@website.twitterCreator}}">
+{{/if}}
+
+{{!-- seo --}}
+{{#if content}}
+<link rel="canonical" href="{{@website.url}}/{{slug}}">
+{{else}}
+<link rel="canonical" href="{{@website.url}}">
+{{/if}}
+
+{{!-- favicon --}}
+
+<link rel="icon" type="image/png" href="{{@website.favicon}}"/>

@@ -2,10 +2,10 @@ const BaseController = require('../base/baseController');
 const Articles = require('../../models/articles.model');
 
 class BlogController extends BaseController {
+
     async show(req, res) {
         try {
-            const query = await Articles.getPost(req.params.slug);
-            console.log(query);
+            const query = await Articles.get(req.params.slug);
             if (query) {
                 return this.view(res, 'articles', query);
             } else {

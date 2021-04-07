@@ -3,7 +3,7 @@
         "title": "Accentio Blog",
         "theme": "wanda",
         "description": "Actualidad y noticias sobre UX Design, Software y Desarrollo web. Todo traido a ustedes por Accentio Studios.",
-        "url": "https://blog.accentiostudios.com/",
+        "url": "https://blog.accentiostudios.com",
         "image": "./public/img/og-image.jpg",
         "imageAlt": "Accentio Studios: Desarrollo de software, web y mobile de alta calidad, enfocado a la experiencia de usuario.",
         "favicon": "./public/favicon.png",

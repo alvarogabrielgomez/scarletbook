@@ -1,0 +1,58 @@
+html {
+    /* font-size: 19px; */
+}
+
+body {
+    font-size: 1.8rem;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.3em;
+    margin-bottom: 1.3rem;
+}
+
+h1 {
+    font-size:4rem;
+}
+h2 {
+    font-size:2.4rem; 
+}
+h3 {
+    font-size:1.6rem; 
+}
+h4 {
+    font-size:calc(3rem * 0.2360); 
+}
+
+article img {
+    width: 100%;
+    margin-left: 0;
+}
+
+.hero-section {
+    min-height: 500px;
+}
+
+.hero-section-with-bg {
+    min-height: 80vh;
+}
+
+.hero-section__date, .hero-section__author {
+    font-size: 1.5rem;
+}
+.hero-section__title {
+    margin: 1.3rem 0 1rem 0;
+}
+
+.main-section__aside {
+    display:block;
+    margin-top: 0;
+}
+
+.footer__menu {
+    grid-gap: 5rem;
+    grid-template-columns: auto auto;
+    grid-auto-flow: row dense;
+    display: grid;
+}

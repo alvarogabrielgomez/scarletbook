@@ -1,9 +1,4 @@
 class BaseController {
-    constructor(website, database) {
-        this.website = website;
-        this.database = database;
-    }
-
     /**
     *  Render the html view loaded with a payload using the setted theme from the system.config.json
     *  @param {Request}  res            Request object from the Express Router
@@ -13,12 +8,21 @@ class BaseController {
     */
     view(res, route, data = null, statusCode = 200) {
         try {
-        if (this.website) {
-                let payload = {};
-                payload.website = this.website;
-                payload.data = data;
+        if (res.app.locals.data.website) {
+                let payload = data;
                 res.status(statusCode);
-                return res.render(route, payload);
+                return res.render(route, {
+                    ... payload,
+                    helpers: {
+                        greaterThan: function (v1, v2, options) {
+                            'use strict';
+                            if (v1>v2) {
+                                return options.fn(this);
+                            }
+                            return options.inverse(this);
+                        }
+                    }
+                });
         } else {
             res.status(500);
             return res.send('Error getting theme settings.');

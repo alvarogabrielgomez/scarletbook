@@ -1,11 +1,41 @@
 const path = require('path');
 const Website = require('./server/models/website.model');
+const _ = require('lodash');
 
 function setTheme(server, website) {
     return new Promise((resolve, reject) => {
-        const themeSelected = website.theme;
-        server.set('view engine', 'ejs');
-        server.set('views', path.join(__dirname, `./front/themes/${themeSelected}/views`));
+        // Getting theme name and absolute path
+        let themeSelected = website.theme;
+        const themePath = path.join(__dirname, `./frontend/themes/${themeSelected}`);
+
+        // Set theme views into express app
+        server.set('views', themePath);
+
+        // Publish theme styles and scripts
+        server.use('/css', require('express').static(`${themePath}/styles`));
+        server.use('/js', require('express').static(`${themePath}/scripts`));
+
+        // Create Handlebars instance
+        var exphbs  = require('express-handlebars');
+        var hbs = exphbs.create({
+            extname: '.hbs',
+            defaultLayout: false,
+            helpers: {
+                foo: function () { return 'FOO BOOT!'; },
+                bar: function () { return 'BAR BOOT!'; }
+            }
+        });
+
+        // Save website default metadata into app locals
+        server.locals.data = {
+            website: website
+        };
+        
+        // Set handlebars engine into express app
+        server.engine('.hbs', hbs.engine);
+        server.set('view engine', '.hbs');
+
+        // Done
         resolve();
     })
 }

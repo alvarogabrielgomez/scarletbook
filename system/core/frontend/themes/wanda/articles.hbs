@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{> metatags}}
+    {{!-- style mobile --}}
+    <link rel="stylesheet" href="./css/main.css" type="text/css">
+    {{!-- style tablet --}}
+    <link rel="stylesheet" href="./css/tablet.css" type="text/css" media="screen and (min-width: 600px)">
+    {{!-- style desktop --}}
+    <link rel="stylesheet" href="./css/desktop.css" type="text/css" media="screen and (min-width: 1000px)">
+    {{!-- others styles --}}
+    <link rel="stylesheet" href="./css/excelsior.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="wrapper">
+    {{> header}}
+    <main class="main">
+            <div class="hero-section {{#if hero_image}} hero-section-with-bg {{/if}}">
+                {{#if hero_image}}
+                <div class="hero-section__background">
+                    <div class="hero-section__background-frontlight"></div>
+                    <picture>
+                        <img class="responsive-picture" src="{{ hero_image }}" alt="">
+                    </picture>
+                </div>
+                {{/if}}
+                <div class="hero-section__content">
+                    <div class="hero-section__header">
+                        <h4 class="hero-section__category">{{ category }} </h4>
+                        <h1 class="hero-section__title">{{ title }}</h1>
+                        <div class="hero-section__row">
+                            <span class="hero-section__date">
+                                Actualizado en {{created_at}}
+                            </span>
+                            <span class="hero-section__author">
+                             Por {{ author }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-section">
+                <div class="main-section__content">
+                    <article class="main-section__article">
+                        {{{ content }}}
+
+                    {{#greaterThan tags.length 0}}
+                        <div class="main-section__article-tags">
+                            <ul>
+                                <li><strong>Más</strong></li>
+                                {{#each tags}}
+                                    <li><a href="./tag/{{this}}">{{this}}</a></li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/greaterThan}}
+                    </article>
+                    <aside class="main-section__aside">
+                        
+                    </aside>
+                </div>
+        </div>
+    </main>
+    {{> related-posts}}
+    {{> footer}}
+</body>
+</html>

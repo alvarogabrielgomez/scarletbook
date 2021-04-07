@@ -31,7 +31,7 @@
                         <h1 class="hero-section__title"><%= data.title %></h1>
                         <div class="hero-section__row">
                             <span class="hero-section__date">
-                                Actualizado en <%= data.created_at %>
+                                Actualizado en <%= new Date(data.created_at).toLocaleDateString() %>
                             </span>
                             <span class="hero-section__author">
                              Por <%= data.author %>
@@ -62,7 +62,7 @@
                 </div>
         </div>
     </main>
-    <%- include('../widgets/related-posts/related-posts.widget.ejs') %>
+    <!-- <%- include('../widgets/related-posts/related-posts.widget.ejs') %> -->
     <%- include('../partials/footer.partial.ejs') %>
 </body>
 </html>
