@@ -56,7 +56,14 @@ module.exports = async function bootSystem() {
         // Init Database
         console.log('📦 Setting SQLite3 Database...');
         console.log();
-        database = await require('./server/database')(config).getDb();
+        const dbFunctions = await require('./server/database')(config);
+        database = await dbFunctions.getDb();
+
+        // Migrations
+        if(config.get('migrate')) {
+            await dbFunctions.doMigration();
+            await dbFunctions.seed();
+        }
 
         // Set Core
         console.log('🧬 Initializing Scarlet Core...');
