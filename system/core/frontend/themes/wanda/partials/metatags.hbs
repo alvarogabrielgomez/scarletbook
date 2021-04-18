@@ -1,4 +1,4 @@
-{{!-- title --}}
+{{!-- title
 {{#if title}}
 <title>{{title}} | {{@website.title}}</title>
 <meta property="og:title" content="{{title}} | {{@website.title}}">
@@ -64,9 +64,7 @@
 <link rel="canonical" href="{{@website.url}}/{{slug}}">
 {{else}}
 <link rel="canonical" href="{{@website.url}}">
-{{/if}}
+{{/if}} --}}
 
-{{!-- favicon --}}
 
-{{!-- <link rel="icon" type="image/png" href="{{@website.favicon}}"/> --}}
-{{{ getFavicon }}}
+{{{ getMetaTags }}}
