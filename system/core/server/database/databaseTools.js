@@ -4,31 +4,18 @@ const utils = require('../../shared/utils');
 const utilNode = require('util');
 const exec = utilNode.promisify(require('child_process').exec);
 const { Model } = require('objection');
+const config = require('../../config');
 
-module.exports = (config) => {    
-    
+class DatabaseTools {
+
     /**
-     * Prepare the configurations to connect to database
-     * @returns 
-     */
-    
-    function getDbConfig(){
-        let database = config.get('database');
-        if (database && database.hasOwnProperty('connection')) {
-            // Transform to absolute path
-            database.connection.filename = utils.convertToAbsolutePath(database.connection.filename);
-            database.migrations.directory = utils.convertToAbsolutePath(database.migrations.directory);
-            database.seeds.directory = utils.convertToAbsolutePath(database.seeds.directory);
-            database.useNullAsDefault = true;
-        }
-        return database;
-    }
-    
-    function getDb(){
+    * Get the knex instance and load the Objection Model with it
+    */
+    getDb(){
         return new Promise((resolve, reject) => {
             let knexInstance;
             if (!knexInstance && config.get('database')) {
-                knexInstance = knex(getDbConfig());
+                knexInstance = knex(config.get('database'));
                 Model.knex(knexInstance);
                 resolve(knexInstance);
             }
@@ -36,7 +23,10 @@ module.exports = (config) => {
         });
     }
     
-    function doMigration(knexInstance){
+    /**
+    * Execute the Migrations
+    */
+    doMigration(knexInstance) {
         // Enter to dir from App
         process.chdir(process.cwd());
         return new Promise(async (resolve, reject) => {
@@ -63,7 +53,10 @@ module.exports = (config) => {
         })
     }
 
-    function seed() {
+    /**
+    * Execute the Seeding process
+    */
+    seed() {
         return new Promise(async (resolve, reject) => {
             try {
                 console.log('📝 - Seeding database...');
@@ -77,11 +70,6 @@ module.exports = (config) => {
             }
         })
     }
-
-    return {
-        getDb,
-        getDbConfig,
-        doMigration,
-        seed
-    }
 }
+
+module.exports = () => new DatabaseTools();

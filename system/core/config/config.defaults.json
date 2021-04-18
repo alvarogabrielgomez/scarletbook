@@ -1,7 +1,10 @@
 {
     "website": {
       "title": "ScarletBook",
-      "theme":"wanda"
+      "theme": {
+        "name": "wanda",
+        "directory": "/system/core/frontend/themes"
+      }
     },
     "server": {
         "host": "127.0.0.1",

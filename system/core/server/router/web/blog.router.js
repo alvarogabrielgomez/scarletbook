@@ -1,7 +1,8 @@
-module.exports = function (website, database) {
+module.exports = function () {
+
     const express = require('express');
     const BlogController = require('../../controllers/web/blog.controller');
-    const blogController = new BlogController(website, database);
+    const blogController = new BlogController();
     const router = express.Router();
 
     // Idea: hacer un pipeline que procese todo el request antes de mandar hacia el controlador
@@ -9,9 +10,9 @@ module.exports = function (website, database) {
     // shared.pipeline()
 
     router
-        .get('/', (res, req) => blogController.index(res, req))
-        .get('/:slug', (res, req) => blogController.show(res, req))
-        .get('/:slug/edit', (res, req) => blogController.edit(res, req))
+        .get('/', (req, res) => blogController.index(req, res))
+        .get('/:slug', (req, res) => blogController.show(req, res))
+        .get('/:slug/edit', (req, res) => blogController.edit(req, res))
         // .post('/', blogController.create)
         // .get('/', blogController.getAll)
         // .get('/:item_id', blogController.getItem)

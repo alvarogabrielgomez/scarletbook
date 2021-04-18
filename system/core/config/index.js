@@ -1,5 +1,6 @@
 const nconf = require('nconf');
 const path = require('path');
+const utils = require('../shared/utils');
 const env = process.env.NODE_ENV || 'development';
 // var fs = require('fs');
 // const os = require('os');
@@ -15,6 +16,13 @@ function loadConfig() {
     nconf.file('defaults', path.join(defaultConfigPath, 'config.defaults.json'));
 
     nconf.set('env', env);
+
+    // Transform all relative path to absolute path
+    nconf.makePathsAbsolute = utils.makePathsAbsolute.bind(nconf);
+
+    nconf.makePathsAbsolute(nconf.get('website'), 'website');
+    nconf.makePathsAbsolute(nconf.get('database'), 'database');
+
 
     return nconf;
 }
