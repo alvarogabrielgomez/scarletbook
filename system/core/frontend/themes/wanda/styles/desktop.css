@@ -3,3 +3,7 @@
     grid-template-columns: 70% auto;
     grid-gap: 30px;
 }
+
+.hero-section__title {
+    max-width: 70%;
+}
