@@ -50,20 +50,20 @@ function metaTagsUrl(path) {
 function metaTagsHeroImage(path) {
     let tags = [];
 
-    if (path.data.root.hasOwnProperty('hero_image')) {
+    if (path.data.root.hasOwnProperty('heroImage')) {
         tags.push(metaTag({
             attribute: 'property', data: 'og:image',
-            content: path.data.root.hero_image
+            content: path.data.root.heroImage
         }));
         
         tags.push(metaTag({
             attribute: 'property', data: 'og:image:alt',
-            content: path.data.root.hero_image ? path.data.root.description : path.data.website.description
+            content: path.data.root.heroImage ? path.data.root.description : path.data.website.description
         }));
         
         tags.push(metaTag({
             attribute: 'name', data: 'twitter:image:src',
-            content: path.data.root.hero_image
+            content: path.data.root.heroImage
         }));
     }
         
@@ -124,6 +124,14 @@ module.exports = function getMetaTags(path, options) {
         attribute: 'name', data: 'robots',
         content: 'index, follow'
     }));
+
+    // Author
+    if(path.data.root.author) {
+        linkMetaTagsList.push(metaTag({
+            attribute: 'name', data: 'author',
+            content: path.data.root.author
+        }));
+    }
 
     // Canonical
     linkMetaTagsList.push(linktag({

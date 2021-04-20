@@ -1,12 +1,12 @@
 const BaseModel = require('./base/baseModel.model');
 
-class Author extends BaseModel {
+class Categories extends BaseModel {
     constructor() {
         super();
     }
     static get tableName(){
-        return 'authors';
+        return 'categories';
     }
 }
 
-module.exports = Author;
+module.exports = Categories;

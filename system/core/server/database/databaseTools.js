@@ -14,8 +14,9 @@ class DatabaseTools {
     getDb(){
         return new Promise((resolve, reject) => {
             let knexInstance;
-            if (!knexInstance && config.get('database')) {
-                knexInstance = knex(config.get('database'));
+            const configDb = config.get('database');
+            if (!knexInstance && configDb) {
+                knexInstance = knex(configDb);
                 Model.knex(knexInstance);
                 resolve(knexInstance);
             }

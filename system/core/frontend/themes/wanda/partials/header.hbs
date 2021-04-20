@@ -1,9 +1,10 @@
-<header class="header {{#if hero_image}} header-transparent {{/if}}">
+<header class="header {{#if heroImage}} header-transparent {{/if}}">
     <div class="header__content">
         <a href="/">        
-         <figure class="header__brand animate__animated animate__fadeIn">
-            <img src="./public/img/logo-header.png" alt="">
-        </figure>
+         <picture class="header__brand animate__animated animate__fadeIn">
+             <source srcset="./public/img/logos/brand-logo-image-md.svg" media="(min-width: 900px)">
+            <img src="./public/img/logos/brand-logo-image-sm.svg" alt="Accentio Blog Logo">
+        </picture>
         </a>
         <div id="menu-header-desktop" class="header__menu">
             <nav>
@@ -17,7 +18,7 @@
         <div class="header__cta animate__animated animate__fadeIn">
             <a id="cta-header-desktop" href="https://accentiostudios.com" 
             class="excelsior-hero-button-xl 
-            {{#if hero_image}} 
+            {{#if heroImage}} 
                 white-muted-color 
             {{else}}
                 primary-muted-l-color 

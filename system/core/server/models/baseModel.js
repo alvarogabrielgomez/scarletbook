@@ -1,6 +1,7 @@
-const scarletEvents = require('../../scarletEvents');
+const scarletEvents = require('../scarletEvents');
 const moment = require('moment');
-const { Model } = require('objection');
+const path = require('path');
+const { Model, snakeCaseMappers } = require('objection');
 
 
 class BaseModel extends Model{
@@ -9,6 +10,9 @@ class BaseModel extends Model{
     }
     static get idColumn() {
         return 'id';
+    }
+    static get columnNameMappers() {
+        return snakeCaseMappers();
     }
 
 }

@@ -9,6 +9,7 @@ exports.seed = async function(knex) {
       // Inserts seed entries
       return knex('authors').insert([
         {
+          id: 1,
           name: 'Alvaro Gabriel',
           email: 'alvaro@accentiostudios.com',
           avatar: ''

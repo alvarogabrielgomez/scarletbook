@@ -21,12 +21,12 @@
 <body class="wrapper">
     {{> header}}
     <main class="main">
-            <div class="hero-section {{#if hero_image}} hero-section-with-bg {{/if}}">
-                {{#if hero_image}}
+            <div class="hero-section {{#if heroImage}} hero-section-with-bg {{/if}}">
+                {{#if heroImage}}
                 <div class="hero-section__background">
                     <div class="hero-section__background-frontlight animate__animated animate__fadeIn"></div>
                     <picture>
-                        <img loading="lazy" class="responsive-picture  animate__animated animate__fadeIn" src="{{ hero_image }}" alt="">
+                        <img loading="lazy" class="responsive-picture  animate__animated animate__fadeIn" src="{{ heroImage }}" alt="">
                     </picture>
                 </div>
                 {{/if}}
@@ -36,7 +36,7 @@
                         <h1 class="hero-section__title animate__animated animate__fadeInDown">{{ title }}</h1>
                         <div class="hero-section__row">
                             <span class="hero-section__date animate__animated animate__fadeInUp">
-                                Actualizado en {{created_at}}
+                                Actualizado en {{createdAt}}
                             </span>
                             <span class="hero-section__author animate__animated animate__fadeInUp">
                              Por {{ author }}

@@ -13,6 +13,7 @@ exports.up = function(knex) {
         table.string('name').notNullable();
         table.string('hero_image');
         table.string('accent_color').notNullable().defaultTo('#1fa5c7');
+        table.string('brand_logo').notNullable().defaultTo('./img/brand-logo-default.png');
         table.timestamps(true, true);
     })
     .createTable('articles', (table) => {

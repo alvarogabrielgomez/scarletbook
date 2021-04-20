@@ -1,5 +1,28 @@
-export default { 
-    setBackgroundImage: function setBackgroundImage(image, newID, oldID) {
+export default class Utils {
+    setBackgroundImage(image, newID, oldID) {
+        
+        const backgroundImage = document.querySelector('div.hero-section__background');
+        var newPicture = document.createElement('picture');
+        newPicture.setAttribute('image-id', newID);
+        newPicture.classList.add('animate__animated', 'animate__fadeIn', 'hero-section__background-image');
+        newPicture.appendChild(image);
+        // newPicture.innerHTML = `<img class="responsive-picture" src="${url}" alt="Awesome hero image">`;
+        backgroundImage.appendChild(newPicture);
+         
+        // Is not the first image
+        if (oldID !== null) {
+            const oldPicture = document.querySelectorAll(`[image-id="${oldID}"]`);
+            setTimeout(() => {
+                oldPicture.forEach((item) => {
+                    backgroundImage.removeChild(item);
+                });
+            }, 600);
+        }
+
+        return newPicture;
+    }
+
+    setBackgroundImage(image, newID, oldID) {
         
         const backgroundImage = document.querySelector('div.hero-section__background');
         var newPicture = document.createElement('picture');
@@ -22,47 +45,62 @@ export default {
         }
 
         return newPicture;
-    },
+    }
 
-    generateCard: function generateCard(cardContent) {
-        let html = `
-        <li id="carr-card-${cardContent.id}" class="carr-cards__card animate__animated animate__fadeInUp">
-            <a href="#" class="carr-cards__card-body">
-                <h3 class="carr-cards__category">${cardContent.category}</h3>
-                <h2 class="carr-cards__title">${cardContent.title}</h2>
-                <div class="carr-cards__timeout">
-                </div>
-            </a>
-        </li>`;
-        return html;
-    },
+    generateCard(cardContent) {
+        const newCard = document.createElement('li');
+        newCard.setAttribute('card-id', cardContent.id);
+        newCard.classList.add('carr-cards__card', 'animate__animated', 'animate__fadeInUp');
 
-    generateListOfCards: function generateListOfCards(listOfCardsContent) {
+        const newCardBody = document.createElement('a');
+        newCardBody.setAttribute('href', '#');
+        newCardBody.classList.add('carr-cards__card-body');
+        newCardBody.innerHTML = `
+        <h3 class="carr-cards__category">${cardContent.category}</h3>
+        <h2 class="carr-cards__title">${cardContent.title}</h2>
+        <div class="carr-cards__timeout">
+        </div>`;
+
+        newCard.appendChild(newCardBody);
+
+        return newCard;
+    }
+
+    generateListOfCards(listOfCardsContent) {
         let list = [];
         listOfCardsContent.forEach(cardContent => {
             list.push(this.generateCard(cardContent));
         });
         return list;
-    },
+    }
 
-    loadCards: function loadCards(listOfCards) {
+    loadCards(listOfCards) {
         const heroSectionCards = document.querySelector('section.hero-section-cards-carr');
-        let cards = '';
-        listOfCards.forEach(card => {
-            cards += card;
+
+        const heroSectionCardsCarrContent = document.createElement('div');
+        heroSectionCardsCarrContent.classList.add('hero-section-cards-carr__content');
+
+        const carrCardsGrid = document.createElement('ul');
+        carrCardsGrid.classList.add('carr-cards__grid');
+
+        listOfCards.forEach((card) => {
+            carrCardsGrid.appendChild(card);
         });
 
-        let html = `
-        <div class="hero-section-cards-carr__content">
-            <ul class="carr-cards__grid">
-            ${cards}
-            </ul>
-        </div>`;
+        // let html = `
+        // <div class="hero-section-cards-carr__content">
+        //     <ul class="carr-cards__grid">
+        //     ${cards}
+        //     </ul>
+        // </div>`;
+        
+        // heroSectionCards.innerHTML = html;
 
-        heroSectionCards.innerHTML = html;
-    },
+        heroSectionCardsCarrContent.appendChild(carrCardsGrid);
+        heroSectionCards.appendChild(heroSectionCardsCarrContent);
+    }
 
-    loadLayout: function loadLayout() {
+    loadLayout() {
         const heroSection = document.querySelector('section.hero-section-home-carr')
         let html = `
         <div class="hero-section__background-frontlight animate__animated animate__fadeIn"></div>
@@ -77,10 +115,9 @@ export default {
         </div>
         `;
         heroSection.innerHTML = html;
-    },
+    }
 
-
-    loadHeroContent(content) {
+    loadHeroContent(content, timeShowing) {
         const category = document.querySelector('div.hero-section__content div.hero-section__header h3.hero-section__category');
         const title = document.querySelector('div.hero-section__content div.hero-section__header h1.hero-section__title');
         const ctaButton = document.querySelector('div.hero-section__content div.hero-section__header a.hero-section__cta');
@@ -94,9 +131,9 @@ export default {
         title.classList.add('animate__animated', 'animate__fadeInDown');
         ctaButton.setAttribute('href', content.articleUrl);
 
-        this.activateProgressBar(content.id, null);
-    },
-    
+        this.activateProgressBar(timeShowing, content.id, null);
+    }
+
     /**
     * Update the Hero Content with the new content
     * @param {object} content The new content with the new ID
@@ -108,9 +145,9 @@ export default {
         const title = document.querySelector('div.hero-section__content div.hero-section__header h1.hero-section__title');
         const heroImage = document.querySelector('section.hero-section-home-carr div.hero-section__background picture');
         const ctaButton = document.querySelector('div.hero-section__content div.hero-section__header a.hero-section__cta');
-
+    
         // First Remove
-
+    
         this.setBackgroundImage(content.image, content.id, actualID);
         category.classList.remove('animate__animated', 'animate__fadeInDown');
         category.classList.add('animate__animated', 'animate__fadeOutDown');
@@ -118,7 +155,7 @@ export default {
         title.classList.add('animate__animated', 'animate__fadeOutDown');
         // heroImage.classList.remove('animate__animated', 'animate__fadeIn');
         // heroImage.classList.add('animate__animated', 'animate__fadeOut');
-
+    
         // Update while animation ends
         category.addEventListener('animationend', () => {
             category.textContent = content.category;
@@ -131,55 +168,57 @@ export default {
             title.classList.add('animate__animated', 'animate__fadeInDown');
             ctaButton.setAttribute('href', content.articleUrl);
         });
-    },
+    }
 
-    preloadImages: function preloadImages() {
+    preloadImages(context) {
         // console.log('preload start');
         return new Promise(async (resolve, reject) => {
-            for (let i = 0; i < arguments.length; i++) {
-                    this.content[i].image = new Image();
-                    this.content[i].image.src = arguments[i].imageUrl;
-                    this.content[i].image.classList.add('responsive-picture');
+            let _content = context.content;
+            for (let i = 0; i < _content.length; i++) {
+                _content[i].image = new Image();
+                _content[i].image.src = _content[i].imageUrl;
+                _content[i].image.classList.add('responsive-picture');
             }
             // console.log('preload end');
-            resolve();
+            resolve(_content);
         });
-    },
+    }
 
-    activateProgressBar: function activateProgressBar(newID, oldID) {
-
+    activateProgressBar(timeShowing, newID, oldID) {
         if(oldID !== null) {
-            const progressbarOld = document.querySelector(`li#carr-card-${oldID} a.carr-cards__card-body div.carr-cards__timeout`);
+            const progressbarOld = document.querySelector(`[card-id="${oldID}"] a.carr-cards__card-body div.carr-cards__timeout`);
             progressbarOld.innerHTML = "";
         }
 
-        const progressbarNew = document.querySelector(`li#carr-card-${newID} a.carr-cards__card-body div.carr-cards__timeout`);
+        const progressbarNew = document.querySelector(`[card-id="${newID}"] a.carr-cards__card-body div.carr-cards__timeout`);
         progressbarNew.innerHTML = "";
 
         const color = document.createElement('div');
         color.classList.add('carr-cards__timeout-color');
-        color.style.transition = 'all linear 10s';
+        color.style.transition = `all ${timeShowing}ms linear 0s`;
+
         progressbarNew.appendChild(color);
 
         setTimeout(() => {
             color.classList.add('w-100');
         }, 100);
-    },
-
-    carrouselHandler: function carrouselHandler(utils) {
-        let _content = this.content;
-        let nextID;
-        if (this.actualID < this.limit) {
-            nextID = this.actualID + 1;
-        } else {
-            // Reset
-            nextID = 1;
-        }
-
-        _content = _content.find(x => x.id === parseInt(nextID))
-        utils.updateHeroContent(_content, this.actualID);
-        utils.activateProgressBar(_content.id, this.actualID);
-
-        this.actualID = nextID;
     }
-}; 
+
+    carouselHandler(context) {
+        return new Promise((resolve, reject) => {
+            let _content = context.content;
+            let _actualID = context.actualID
+            let _timeShowing = context.timeShowing;
+            let _limit = context.limit;
+            let nextID;
+
+            nextID = _actualID < _limit ? _actualID + 1 : 1;
+            _content = _content.find(x => x.id === parseInt(nextID));
+
+            this.updateHeroContent(_content, _actualID);
+            this.activateProgressBar(_timeShowing, _content.id, _actualID);
+        
+            resolve(nextID);
+        });
+    }
+}

@@ -1,7 +1,8 @@
-const { BaseModel } = require('./base/baseModel');
+const { BaseModel } = require('./baseModel');
 const { Model } = require('objection');
 const _ = require('lodash');
 const hljs = require('highlight.js');
+const path = require('path');
 const md = require('markdown-it')({
     html: true,
     linkify: true,
@@ -32,13 +33,35 @@ class Articles extends BaseModel {
         this.slug = slug;
     }
 
-    static get tableName(){
-        return 'articles';
+    static tableName = 'articles';
+    static idColumn = 'id';
+
+    static get relationMappings() {
+        return {
+            author: {
+                relation: Model.BelongsToOneRelation,
+                modelClass: path.join(__dirname, 'authors.model'),
+                join: {
+                    from: 'articles.author_id',
+                    to: 'authors.id'
+                }
+            },
+            category: {
+                relation: Model.BelongsToOneRelation,
+                modelClass: path.join(__dirname, 'categories.model'),
+                join: {
+                    from: 'articles.category_id',
+                    to: 'categories.id'
+                }
+            }
+        }
     }
 
     static async get(slug) {
         // Getting from Database using Objection.js
-        let data = await this.query().where({ slug });
+        let data = await this.query()
+        .where({ slug });
+
         // If exists
         if (data[0]) {
             // Parse tags JSON object

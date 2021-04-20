@@ -29,7 +29,7 @@ const _ = require('lodash');
  * Here happens the big bang!
  */
 module.exports = async function bootSystem() {
-    let server
+    let server, database;
 
     try {
         // Load Config
@@ -50,10 +50,10 @@ module.exports = async function bootSystem() {
 
         // Migrations
         if(config.get('migrate')) {
-            await databaseTools.doMigration();
+            await databaseTools.doMigration(database);
         }
         if(config.get('seed')) {
-            await databaseTools.seed();
+            await databaseTools.seed(database);
         }
 
         // Set Core
