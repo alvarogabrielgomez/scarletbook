@@ -30,6 +30,7 @@ function metaTagsTitle(path) {
     return tags;
 }
 
+
 function metaTagsDesc(path) {
     let tags = [];
     const metaAttributes = [{'name':'description'}, {'property':'og:description'}, {'name':'twitter:description'}];

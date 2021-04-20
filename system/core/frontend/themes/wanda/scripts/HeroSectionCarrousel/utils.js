@@ -3,7 +3,7 @@ export default {
         
         const backgroundImage = document.querySelector('div.hero-section__background');
         var newPicture = document.createElement('picture');
-        newPicture.id = `hero-image-${newID}`;
+        newPicture.setAttribute('image-id', newID);
         newPicture.classList.add('animate__animated', 'animate__fadeIn', 'hero-section__background-image');
         newPicture.appendChild(image);
         // newPicture.innerHTML = `<img class="responsive-picture" src="${url}" alt="Awesome hero image">`;
@@ -11,10 +11,14 @@ export default {
          
         // Is not the first image
         if (oldID !== null) {
-            const oldPicture = document.getElementById(`hero-image-${oldID}`);
-            newPicture.addEventListener('animationend', () => {
-                backgroundImage.removeChild(oldPicture);
-            });
+            const oldPicture = document.querySelectorAll(`[image-id="${oldID}"]`);
+            setTimeout(() => {
+                oldPicture.forEach((item) => {
+                    backgroundImage.removeChild(item);
+                });
+            }, 600);
+            // newPicture.addEventListener('animationend', () => {
+            // });
         }
 
         return newPicture;
@@ -27,7 +31,6 @@ export default {
                 <h3 class="carr-cards__category">${cardContent.category}</h3>
                 <h2 class="carr-cards__title">${cardContent.title}</h2>
                 <div class="carr-cards__timeout">
-                    <div class="carr-cards__timeout-color"></div>
                 </div>
             </a>
         </li>`;
@@ -90,6 +93,8 @@ export default {
         title.classList.remove('animate__animated', 'animate__fadeOutDown');
         title.classList.add('animate__animated', 'animate__fadeInDown');
         ctaButton.setAttribute('href', content.articleUrl);
+
+        this.activateProgressBar(content.id, null);
     },
     
     /**
@@ -126,12 +131,6 @@ export default {
             title.classList.add('animate__animated', 'animate__fadeInDown');
             ctaButton.setAttribute('href', content.articleUrl);
         });
-        //heroImage.addEventListener('animationend', () => {
-            
-            // heroImage.children[0].setAttribute('src', content.imageUrl);
-            // heroImage.classList.remove('animate__animated', 'animate__fadeOut');
-            // heroImage.classList.add('animate__animated', 'animate__fadeIn');
-        //});
     },
 
     preloadImages: function preloadImages() {
@@ -147,8 +146,24 @@ export default {
         });
     },
 
-    activateProgressBar: function activateProgressBar() {
-        const progressbar = document.querySelector('');
+    activateProgressBar: function activateProgressBar(newID, oldID) {
+
+        if(oldID !== null) {
+            const progressbarOld = document.querySelector(`li#carr-card-${oldID} a.carr-cards__card-body div.carr-cards__timeout`);
+            progressbarOld.innerHTML = "";
+        }
+
+        const progressbarNew = document.querySelector(`li#carr-card-${newID} a.carr-cards__card-body div.carr-cards__timeout`);
+        progressbarNew.innerHTML = "";
+
+        const color = document.createElement('div');
+        color.classList.add('carr-cards__timeout-color');
+        color.style.transition = 'all linear 10s';
+        progressbarNew.appendChild(color);
+
+        setTimeout(() => {
+            color.classList.add('w-100');
+        }, 100);
     },
 
     carrouselHandler: function carrouselHandler(utils) {
@@ -163,6 +178,7 @@ export default {
 
         _content = _content.find(x => x.id === parseInt(nextID))
         utils.updateHeroContent(_content, this.actualID);
+        utils.activateProgressBar(_content.id, this.actualID);
 
         this.actualID = nextID;
     }
