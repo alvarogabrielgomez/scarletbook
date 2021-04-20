@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{{ getMetaTags }}}
+    {{!-- animate css --}}
+    <link rel="stylesheet" href="./css/animate.min.css"/>
     {{!-- style mobile --}}
     <link rel="stylesheet" href="./css/main.css" type="text/css">
     {{!-- style tablet --}}
@@ -22,21 +24,21 @@
             <div class="hero-section {{#if hero_image}} hero-section-with-bg {{/if}}">
                 {{#if hero_image}}
                 <div class="hero-section__background">
-                    <div class="hero-section__background-frontlight"></div>
+                    <div class="hero-section__background-frontlight animate__animated animate__fadeIn"></div>
                     <picture>
-                        <img class="responsive-picture" src="{{ hero_image }}" alt="">
+                        <img loading="lazy" class="responsive-picture  animate__animated animate__fadeIn" src="{{ hero_image }}" alt="">
                     </picture>
                 </div>
                 {{/if}}
                 <div class="hero-section__content">
                     <div class="hero-section__header">
-                        <h3 class="hero-section__category">{{ category }} </h3>
-                        <h1 class="hero-section__title">{{ title }}</h1>
+                        <h3 class="hero-section__category animate__animated animate__fadeInDown">{{ category }} </h3>
+                        <h1 class="hero-section__title animate__animated animate__fadeInDown">{{ title }}</h1>
                         <div class="hero-section__row">
-                            <span class="hero-section__date">
+                            <span class="hero-section__date animate__animated animate__fadeInUp">
                                 Actualizado en {{created_at}}
                             </span>
-                            <span class="hero-section__author">
+                            <span class="hero-section__author animate__animated animate__fadeInUp">
                              Por {{ author }}
                             </span>
                         </div>

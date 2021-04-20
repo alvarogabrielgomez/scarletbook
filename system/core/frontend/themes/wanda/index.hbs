@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{{ getMetaTags }}}
+    {{!-- animate css --}}
+    <link rel="stylesheet" href="./css/animate.min.css"/>
     {{!-- style mobile --}}
     <link rel="stylesheet" href="./css/main.css" type="text/css">
     {{!-- style tablet --}}
@@ -13,66 +15,25 @@
     <link rel="stylesheet" href="./css/desktop.css" type="text/css" media="screen and (min-width: 1000px)">
     {{!-- others styles --}}
     <link rel="stylesheet" href="./css/excelsior.css" type="text/css">
+    {{!-- fonts --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    {{!-- scripts --}}
+    <script type="module" src="./js/HeroSectionCarrousel/index.js" async></script>
 </head>
 <body class="wrapper">
     {{> homeHeader}}
     <main class="main">
         <section class="hero-section hero-section-with-bg hero-section-home-carr">
-            <div class="hero-section__background">
-                <div class="hero-section__background-frontlight"></div>
-                <picture>
-                    <img class="responsive-picture" src="./public/img/stock1.jpg" alt="">
-                </picture>
-            </div>
-            <div class="hero-section__content">
-                <div class="hero-section__header">
-                    <h3 class="hero-section__category">Category</h3>
-                    <h1 class="hero-section__title">Que es UX, y como puede ayudarte en tu negocio</h1>
-                    <a href="/test-article" class="hero-section__cta excelsior-hero-button-xl">
-                        Leer articulo
-                    </a>
+            <div class="spinner-ripple-container">
+                <div class="spinner-ripple">
+                <div></div><div></div>
                 </div>
             </div>
         </section>
         <section class="hero-section-cards-carr">
-            <div class="hero-section-cards-carr__content">
-                <ul class="carr-cards__grid">
-                    <li class="carr-cards__card">
-                        <a href="#" class="carr-cards__card-body">
-                            <h3 class="carr-cards__category">Category</h3>
-                            <h2 class="carr-cards__title">Lorem ipsum dolor sit amet consectetur adipisicing elit repellendus voluptate quo nobis...</h2>
-                            <div class="carr-cards__timeout">
-                                <div class="carr-cards__timeout-color"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="carr-cards__card">
-                        <a href="#" class="carr-cards__card-body">
-                            <h3 class="carr-cards__category">Category</h3>
-                            <h2 class="carr-cards__title">Lorem ipsum dolor sit amet consectetur adipisicing elit repellendus voluptate quo nobis...</h2>
-                            <div class="carr-cards__timeout">
-                                <div class="carr-cards__timeout-color"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="carr-cards__card">
-                        <a href="#" class="carr-cards__card-body">
-                            <h3 class="carr-cards__category">Category</h3>
-                            <h2 class="carr-cards__title">Lorem ipsum dolor sit amet consectetur adipisicing elit repellendus voluptate quo nobis...</h2>
-                            <div class="carr-cards__timeout">
-                                <div class="carr-cards__timeout-color"></div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="hero-section-cards-carr__card">
-
-                </div>
-            </div>
         </section>
+
         <section class="related-posts related-posts-home">
             <div class="related-posts__content">
                 <h1 class="related-posts__header left">
@@ -88,10 +49,10 @@
                         </div>
                     </a>
                 </li> --}}
-                <li class="related-card">
+                <li class="related-card ">
                     <a class="related-card__body" href="">
                         <div class="related-card__media-wrapper">
-                            <img src="./public/img/stock2.jpg" alt="">
+                            {{!-- <img src="./public/img/stock2.jpg" loading="lazy" alt=""> --}}
                         </div>
                         <div class="related-card__content">
                             <h1>Lorem ipsum dolor sit amet</h1>
@@ -103,7 +64,7 @@
                 <li class="related-card">
                     <a class="related-card__body" href="">
                         <div class="related-card__media-wrapper">
-                            <img src="./public/img/stock3.jpg" alt="">
+                            {{!-- <img src="./public/img/stock3.jpg" loading="lazy" alt=""> --}}
                         </div>
                         <div class="related-card__content">
                             <h1>Lorem ipsum dolor sit amet</h1>
@@ -115,7 +76,7 @@
                 <li class="related-card">
                     <a class="related-card__body" href="">
                         <div class="related-card__media-wrapper">
-                            <img src="./public/img/stock4.jpg" alt="">
+                            {{!-- <img src="./public/img/stock4.jpg" loading="lazy" alt=""> --}}
                         </div>
                         <div class="related-card__content">
                             <h1>Lorem ipsum dolor sit amet</h1>
