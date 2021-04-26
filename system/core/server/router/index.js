@@ -2,7 +2,9 @@ class RouterRegister {
 
     get routes() { 
         return [
-            { path: '/', router: './web/blog.router' }
+            { path: '/', router: './web/blog.router' },
+            { path: '/api', router: './api/posts.api.router.js' }
+
         ];
     } 
 

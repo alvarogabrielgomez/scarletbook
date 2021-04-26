@@ -8,9 +8,15 @@
     "prod": "cross-env NODE_ENV=production node ./index.js",
     "start:migrate": "node ./index.js --migrate",
     "start:seed": "node ./index.js --seed",
-    "start:migrate-seed": "node ./index.js --migrate --seed"
+    "start:migrate-seed": "node ./index.js --migrate --seed",
+    "serve": "node ./nodemon.js"
   },
-  "keywords": ["blog", "node-cms", "markdown", "sqlite3"],
+  "keywords": [
+    "blog",
+    "node-cms",
+    "markdown",
+    "sqlite3"
+  ],
   "author": "Alvaro Gabriel <alvaro@accentiostudios.com>",
   "license": "ISC",
   "dependencies": {
@@ -25,9 +31,11 @@
     "md5": "^2.3.0",
     "moment": "^2.29.1",
     "nconf": "^0.11.2",
-    "nodemon": "^2.0.7",
     "objection": "^2.2.15",
     "sqlite3": "^5.0.2",
     "yaml-front-matter": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

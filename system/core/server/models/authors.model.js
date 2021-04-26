@@ -1,4 +1,4 @@
-const BaseModel = require('./base/baseModel.model');
+const { BaseModel } = require('./baseModel');
 
 class Authors extends BaseModel {
     constructor() {

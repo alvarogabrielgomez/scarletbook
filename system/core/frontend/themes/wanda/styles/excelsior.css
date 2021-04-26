@@ -1,11 +1,10 @@
 :root {
-    --primary-color-real: #46C4E2;
+    --primary-color-real: #1fa5c7;
     --primary-color: #1fa5c7;
-    --secondary-color: #F16750;
+    --secondary-color: #d81927;
     /* Accentio Colors */
     --blue: #38557C;
     --cyan: #46C4E2;
-    --orange: #F16750;
     --red: #C04E37;
     --white: #fff;
     --black: #000;

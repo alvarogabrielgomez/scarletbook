@@ -33,9 +33,14 @@ module.exports = async function bootSystem() {
 
     try {
         // Load Config
-        console.log('⚙️  - Loading configurations...');
+        console.log('⚙️ - Loading configurations...');
         console.log();    
         config = require('./config');
+
+        if (config.get('nodemon')) {
+            console.log('⚙️ - Running in watch mode...');
+            console.log();   
+        };
 
         // Load Express Server in Maintenence Mode
         console.log('☕️ - Loading express server in maintenence mode...');

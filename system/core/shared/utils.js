@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const isObject = require('lodash/isObject');
 const isString = require('lodash/isString');
 
@@ -23,6 +24,19 @@ function matchKeyName(key) {
         return true;
     }
     return false;
+}
+
+exports.generateNonce = function generateNonce() {
+    let nonce = crypto.randomBytes(16).toString('base64');
+    return nonce;
+}
+
+exports.setCSPHeaders = function setCSPHeaders(req, res, next) {
+    res.setHeader(
+        'Content-Security-Policy',
+        `default-src 'self'; font-src 'self' fonts.gstatic.com; img-src 'self'; script-src 'self' ; style-src 'self' fonts.googleapis.com; frame-src 'self' https://www.youtube.com`
+      );
+    next();
 }
 
 /**

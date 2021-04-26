@@ -59,7 +59,11 @@ class Articles extends BaseModel {
 
     static async get(slug) {
         // Getting from Database using Objection.js
+        let querySelect = [ 'category.name as category', 'title', 'description', 'tags', 'articles.created_at', 'articles.updated_at', 
+        'slug', 'articles.id', 'articles.hero_image', 'author.name as author', 'content'];
         let data = await this.query()
+        .select(...querySelect)
+        .joinRelated({ category: true, author: true })
         .where({ slug });
 
         // If exists

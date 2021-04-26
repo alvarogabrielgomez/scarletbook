@@ -1,3 +1,5 @@
+const { generateNonce } = require('../../../shared/utils');
+
 class BaseController {
     /**
     *  Render the html view loaded with a payload using the setted theme from the system.config.json
@@ -9,19 +11,16 @@ class BaseController {
     view(res, route, data = null, statusCode = 200) {
         try {
         if (res.app.locals.data.website) {
+                const nonce = generateNonce();
                 let payload = data;
                 res.status(statusCode);
+                res.setHeader(
+                    'Content-Security-Policy',
+                    `default-src 'self'; font-src 'self' fonts.gstatic.com; img-src 'self'; script-src 'self' 'nonce-${nonce}' ; style-src 'self' fonts.googleapis.com; frame-src 'self' https://www.youtube.com`
+                  );
                 return res.render(route, {
                     ... payload,
-                    helpers: {
-                        greaterThan: function (v1, v2, options) {
-                            'use strict';
-                            if (v1>v2) {
-                                return options.fn(this);
-                            }
-                            return options.inverse(this);
-                        }
-                    }
+                    nonce: nonce
                 });
         } else {
             res.status(500);
