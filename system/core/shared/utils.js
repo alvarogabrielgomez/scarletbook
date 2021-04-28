@@ -19,6 +19,15 @@ exports.convertToAbsolutePath = function convertToAbsolutePath (_path) {
     return path.join(process.cwd(), _path);
 }
 
+
+exports.setProxyHeader = function setProxyHeader(req, res, next) {
+	const accentioProxy = req.headers['x-accentio-proxy'];
+	if(accentioProxy) {
+		res.append('X-Accentio-Proxy', req.headers['x-accentio-proxy']);
+	}
+	next();
+}
+
 function matchKeyName(key) {
     if (key === 'filename' || key === 'directory' || key === 'path') {
         return true;
