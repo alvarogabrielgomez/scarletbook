@@ -21,4 +21,12 @@ app.use('/public', express.static(path.join(process.cwd(), './content/public')))
 app.use('/', express.static(path.resolve(__dirname, './public')));
 app.use(utils.maintenanceMiddleware);
 
+app.use((req, res, next) => {
+	const accentioProxy = req.headers['x-accentio-proxy'];
+	if(accentioProxy) {
+		res.append('X-Accentio-Proxy', req.headers['x-accentio-proxy']);
+	}
+	next();
+})
+
 module.exports = app;
