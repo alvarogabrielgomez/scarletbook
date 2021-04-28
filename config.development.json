@@ -12,5 +12,8 @@
         "twitterSite": "@AccentioStudios",
         "twitterCreator": "@AccentioStudios"
 
+    },
+    "server": {
+    	"port": 80
     }
 }

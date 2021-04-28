@@ -9,7 +9,8 @@
     "start:migrate": "node ./index.js --migrate",
     "start:seed": "node ./index.js --seed",
     "start:migrate-seed": "node ./index.js --migrate --seed",
-    "serve": "node ./nodemon.js"
+    "serve": "node ./nodemon.js",
+    "heroku-postbuild": "node migrate.js seed"
   },
   "keywords": [
     "blog",
