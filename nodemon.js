@@ -3,6 +3,8 @@ const args = require('minimist')(process.argv.slice(2));
 
 if (args['dev']) {
     process.env.NODE_ENV = 'development';
+} else {
+  process.env.NODE_ENV = 'production';
 }
 
 nodemon({
