@@ -71,7 +71,7 @@ module.exports = async function bootSystem() {
         console.log();
         server.disable('maintenance');
 
-        console.log(`🏁 - Done! => http://${config.get('server:host')}:${config.get('server:port')}`);
+        console.log(`🏁 - Done! => http://localhost:${config.get('server:port')}`);
         console.log();
 
     } catch (e) {

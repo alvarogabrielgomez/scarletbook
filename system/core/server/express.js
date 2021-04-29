@@ -21,6 +21,6 @@ app.use('/public', express.static(path.join(process.cwd(), './content/public')))
 app.use('/', express.static(path.resolve(__dirname, './public')));
 app.use(utils.maintenanceMiddleware);
 
-app.use(utils.setProxyHeader)
+app.use(utils.setProxyHeader);
 
 module.exports = app;

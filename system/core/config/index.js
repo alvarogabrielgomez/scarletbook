@@ -5,15 +5,16 @@ const env = process.env.NODE_ENV || 'development';
 // var fs = require('fs');
 // const os = require('os');
 
-const defaultConfigPath = __dirname;
+const scarletConfigPath = __dirname;
 const localConfigPath = process.cwd();
 
 function loadConfig() {
 
     nconf.argv()
     .env();
-    nconf.file('local', path.join(localConfigPath, `config.${env}.json`));
-    nconf.file('defaults', path.join(defaultConfigPath, 'config.defaults.json'));
+    nconf.file(`local-${env}`, path.join(localConfigPath, `config.${env}.json`));
+    nconf.file(`local-defaults`, path.join(localConfigPath, `config.defaults.json`));
+    nconf.file('scarletbook', path.join(scarletConfigPath, 'config.scarletbook.json'));
 
     nconf.set('env', env);
 

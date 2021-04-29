@@ -1,19 +1,5 @@
 {
-    "website": {
-        "title": "Accentio Blog",
-        "theme": {
-            "name": "wanda"
-        },
-        "description": "Actualidad y noticias sobre UX Design, Software y Desarrollo web. Todo traido a ustedes por Accentio Studios.",
-        "url": "https://blog.accentiostudios.com",
-        "image": "./public/img/og-image.jpg",
-        "imageAlt": "Accentio Studios: Desarrollo de software, web y mobile de alta calidad, enfocado a la experiencia de usuario.",
-        "twitterCard": "summary_large_image",
-        "twitterSite": "@AccentioStudios",
-        "twitterCreator": "@AccentioStudios"
-
-    },
     "server": {
-    	"port": 8082
+    	"port": 8080
     }
 }

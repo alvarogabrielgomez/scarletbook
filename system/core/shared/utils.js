@@ -3,6 +3,13 @@ const path = require('path');
 const crypto = require('crypto');
 const isObject = require('lodash/isObject');
 const isString = require('lodash/isString');
+var os = require( 'os' );
+
+exports.getLocalIP = function getLocalIP() {
+    var networkInterfaces = os.networkInterfaces();
+    var arr = networkInterfaces['Local Area Connection 3']
+    var ip = arr[1].address
+}
 
 exports.maintenanceMiddleware = function maintenanceMiddleware (req, res, next) {
     if (!req.app.get('maintenance')) {
