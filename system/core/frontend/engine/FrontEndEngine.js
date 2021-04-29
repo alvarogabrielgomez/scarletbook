@@ -1,5 +1,6 @@
 const path = require('path');
 const config = require('../../config');
+const oneHour = 3600000; 
 
 class FrontEndEngine {
     /**
@@ -47,8 +48,12 @@ class FrontEndEngine {
             server.set('views', themePath);
         
             // Publish theme styles and scripts
-            server.use('/css', require('express').static(`${themePath}/styles`));
-            server.use('/js', require('express').static(`${themePath}/scripts`));
+            server.use('/css', require('express').static(`${themePath}/styles`, {
+                maxAge: '24h'
+            }));
+            server.use('/js', require('express').static(`${themePath}/scripts`, {
+                maxAge: '24h'
+            }));
             
         
             if (config.get('env') !== 'production') {

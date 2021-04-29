@@ -4,6 +4,7 @@ const path = require('path');
 const helmet = require('helmet');
 const utils = require('../shared/utils');
 const app = express();
+const oneHour = 3600000; 
 
 app.use(compression());
 app.use(helmet()); // Sending various http headers
@@ -17,14 +18,20 @@ app.use(express.urlencoded({
 // Set Maintenance mode ON
 app.set('maintenance', true);
 
+app.use(utils.setHeaders);
+
 // Publish content/public folder to /public path
-app.use('/public', express.static(path.join(process.cwd(), './content/public')));
+app.use('/public', express.static(path.join(process.cwd(), './content/public'), {
+    maxAge: '4h'
+}));
 
 // Publish internal scarletbook files to to root path
-app.use('/', express.static(path.resolve(__dirname, './public')));
+app.use('/', express.static(path.resolve(__dirname, './public'), {
+    maxAge: '4h'
+}));
+
 app.use(utils.maintenanceMiddleware);
 
-app.use(utils.setHeaders);
 
 
 
