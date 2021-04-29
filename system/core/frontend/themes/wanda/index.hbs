@@ -21,6 +21,8 @@
     {{!-- scripts --}}
     <script type="module" src="./js/heroSectionCarousel/heroSectionCarousel.js" async></script>
     <script type="module" src="./js/RelatedPosts/relatedPosts.js" async></script>
+    {{{getGTag "head"}}}
+    
 
 </head>
 <body class="wrapper">
@@ -45,6 +47,7 @@
         </section>
     </main>
     {{> footer}}
+    {{{getGTag "body"}}}
 </body>
 <script nonce="{{{nonce}}}">
 
