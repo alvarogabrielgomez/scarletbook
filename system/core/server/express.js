@@ -5,9 +5,10 @@ const helmet = require('helmet');
 const utils = require('../shared/utils');
 const app = express();
 
+app.use(compression());
 app.use(helmet()); // Sending various http headers
 
-app.enable('trust proxy');
+app.enable('trust proxy', true);
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
@@ -23,8 +24,8 @@ app.use('/public', express.static(path.join(process.cwd(), './content/public')))
 app.use('/', express.static(path.resolve(__dirname, './public')));
 app.use(utils.maintenanceMiddleware);
 
-app.use(utils.setProxyHeader);
+app.use(utils.setHeaders);
 
-app.use(compression());
+
 
 module.exports = app;

@@ -27,11 +27,8 @@ exports.convertToAbsolutePath = function convertToAbsolutePath (_path) {
 }
 
 
-exports.setProxyHeader = function setProxyHeader(req, res, next) {
-	const accentioProxy = req.headers['x-accentio-proxy'];
-	if(accentioProxy) {
-		res.append('X-Accentio-Proxy', req.headers['x-accentio-proxy']);
-	}
+exports.setHeaders = function setHeaders(req, res, next) {
+    res.setHeader('Cache-Control', 'max-age=86400, public');
 	next();
 }
 
