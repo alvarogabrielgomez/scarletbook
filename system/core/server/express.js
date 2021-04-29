@@ -1,8 +1,10 @@
+var compression = require('compression');
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const utils = require('../shared/utils');
 const app = express();
+
 app.use(helmet()); // Sending various http headers
 
 app.enable('trust proxy');
@@ -22,5 +24,7 @@ app.use('/', express.static(path.resolve(__dirname, './public')));
 app.use(utils.maintenanceMiddleware);
 
 app.use(utils.setProxyHeader);
+
+app.use(compression());
 
 module.exports = app;

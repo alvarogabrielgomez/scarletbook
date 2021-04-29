@@ -1,4 +1,9 @@
 var nodemon = require('nodemon');
+const args = require('minimist')(process.argv.slice(2));
+
+if (args['prod']) {
+    process.env.NODE_ENV = 'production';
+}
 
 nodemon({
     script: 'index.js',
