@@ -2,6 +2,7 @@ const ApiBaseController = require('./apiBaseController');
 const { BaseModel } = require('../../../models/baseModel');
 const Articles = require('../../../models/articles.model');
 const knex = BaseModel.knex();
+const debug = require('debug')('scarletbook:controllers:api:v1:posts');
 
 class PostsApiController extends ApiBaseController {
 
@@ -40,8 +41,12 @@ class PostsApiController extends ApiBaseController {
     }
 
     async getArticles(req, res) {
+        var before, str, pos, res, took;
+
+        before = process.hrtime();
         let page = parseInt(req.query.page);
         let limit = parseInt(req.query.limit);
+        if (limit) { limit = limit <= 9 ? limit : 9 } // 9 is the max.
         let content = parseInt(req.query.content);
         let querySelect = [ 'category.name as category', 'title', 'description', 'tags', 'articles.created_at', 'articles.updated_at', 
         'slug', 'articles.id', 'articles.hero_image', 'author.name as author'];
@@ -52,6 +57,9 @@ class PostsApiController extends ApiBaseController {
         .joinRelated({ category: true, author: true })
         .page(page, limit);
 
+
+        took = process.hrtime(before);
+        debug('getArticles took', took);
         return res.status(200).send(articles);
     }
 

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
+    "debug": "cross-env DEBUG=scarletbook:* node ./index.js",
     "prod": "cross-env NODE_ENV=production node ./index.js",
     "start:migrate": "node ./index.js --migrate",
     "start:seed": "node ./index.js --seed",
@@ -23,6 +24,7 @@
   "dependencies": {
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
+    "debug": "^2.6.9",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.0",

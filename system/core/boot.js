@@ -1,6 +1,7 @@
 const path = require('path');
 const Website = require('./server/models/website.model');
 const _ = require('lodash');
+var debug = require('debug')('scarletbook:boot');
 
 /**
   * Init the Scarlet Core
@@ -30,9 +31,13 @@ const _ = require('lodash');
  */
 module.exports = async function bootSystem() {
     let server, database;
-
+    let bootbefore, boottook;
     try {
+        // Init hrtime
+        before = process.hrtime();
+
         // Load Config
+
         console.log('⚙️ - Loading configurations...');
         console.log();    
         config = require('./config');
@@ -73,6 +78,9 @@ module.exports = async function bootSystem() {
 
         console.log(`🏁 - Done! => http://localhost:${config.get('server:port')}`);
         console.log();
+
+        took = process.hrtime(before);
+        debug('Boot Time ', took);
 
     } catch (e) {
         console.error(e);
