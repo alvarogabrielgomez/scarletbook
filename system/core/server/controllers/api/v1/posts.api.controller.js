@@ -44,9 +44,11 @@ class PostsApiController extends ApiBaseController {
         var before, str, pos, res, took;
 
         before = process.hrtime();
+        let distinctArticleId = parseInt(req.query.distinct);
         let page = parseInt(req.query.page);
         let limit = parseInt(req.query.limit);
         if (limit) { limit = limit <= 9 ? limit : 9 } // 9 is the max.
+        
         let content = parseInt(req.query.content);
         let querySelect = [ 'category.name as category', 'title', 'description', 'tags', 'articles.created_at', 'articles.updated_at', 
         'slug', 'articles.id', 'articles.hero_image', 'author.name as author'];
@@ -54,7 +56,9 @@ class PostsApiController extends ApiBaseController {
 
         let articles = await Articles.query()
         .select(...querySelect)
+        .where('articles.id', '<>', distinctArticleId.toString())
         .joinRelated({ category: true, author: true })
+        .orderBy('articles.id', 'desc')
         .page(page, limit);
 
 

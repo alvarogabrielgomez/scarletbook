@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="./css/excelsior.css" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    {{!-- scripts --}}
+    <script type="module" src="./js/RelatedPosts/relatedPosts.js" defer></script>
 </head>
 <body class="wrapper">
     {{> header}}
@@ -67,7 +69,18 @@
                 </div>
         </div>
     </main>
-    {{> related-posts}}
+    <section class="related-posts">
+    </section>
     {{> footer}}
 </body>
+<script nonce="{{{nonce}}}">
+    document.addEventListener("DOMContentLoaded", () => {
+        relatedPosts.init({
+            theme: 'darkblue',
+            headerText: 'Leer más',
+            headerAlign: 'center',
+            distinct: {{id}}
+        });
+     });
+</script>
 </html>

@@ -7,13 +7,18 @@ class RelatedPosts {
         this.actualPage = 0;
         this.lastPage = 0;
         this.limit = 9;
+        this.distinct = 0;
         this.content = [],
-        this.header = { text: 'Descubre', align: 'left'};
-        this.theme = 'white';
+        this.header = {};
+        this.theme = '';
         this.busy = true;
     }
 
-    init() {
+    init(config) {
+        this.header = { text: config.headerText || 'Descubre', align: config.headerAlign || 'left'};
+        this.theme = config.theme || 'white';
+        this.distinct = parseInt(config.distinct) || 0;
+
         utils.loadLayout(this);
         this.showSpinner();
         this.getContent(0)
@@ -27,7 +32,7 @@ class RelatedPosts {
 
     getContent(page) {
         return Promise.resolve(
-            fetch(`./api/articles?page=${page}&limit=${this.limit}`)
+            fetch(`./api/articles?page=${page}&limit=${this.limit}&distinct=${this.distinct}`)
                 .then(async (raw) => {
                     const data = await raw.json();
                     return data;
@@ -58,6 +63,4 @@ class RelatedPosts {
     }
 }
 
-const relatedPosts = new RelatedPosts();
-window.relatedPosts = relatedPosts;
-relatedPosts.init();
+window.relatedPosts = new RelatedPosts();

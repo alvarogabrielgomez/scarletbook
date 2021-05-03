@@ -19,8 +19,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     {{!-- scripts --}}
-    <script type="module" src="./js/heroSectionCarousel/heroSectionCarousel.js" async></script>
-    <script type="module" src="./js/RelatedPosts/relatedPosts.js" async></script>
+    <script type="module" src="./js/heroSectionCarousel/heroSectionCarousel.js" defer></script>
+    <script type="module" src="./js/RelatedPosts/relatedPosts.js" defer></script>
     
 
 </head>
@@ -48,7 +48,13 @@
     {{> footer}}
 </body>
 <script nonce="{{{nonce}}}">
-
+    document.addEventListener("DOMContentLoaded", () => {
+        relatedPosts.init({
+            theme: 'white',
+            headerText: 'Descubre',
+            headerAlign: 'left'
+        });
+     });
 </script>
 
 </html>
