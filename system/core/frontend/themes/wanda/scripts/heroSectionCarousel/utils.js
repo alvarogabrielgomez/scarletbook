@@ -239,20 +239,22 @@ export default class Utils {
     }
 
     carouselHandler(context) {
-        return new Promise((resolve, reject) => {
-            let _content = context.content;
-            let _actualID = context.actualID
-            let _limit = context.limit;
-            let nextID;
-
-            nextID = _actualID < _limit ? _actualID + 1 : 1;
-            _content = _content.find(x => parseInt(x.id) === parseInt(nextID));
-
-            this.updateHeroContent(_content, _actualID);
-            this.activateCard(context, _content.id, _actualID);
-        
-            resolve(nextID);
-        });
+        if (context.content.length > 1) {
+            return new Promise((resolve, reject) => {
+                let _content = context.content;
+                let _actualID = context.actualID
+                let _limit = context.limit;
+                let nextID;
+    
+                nextID = _actualID < _limit ? _actualID + 1 : 1;
+                _content = _content.find(x => parseInt(x.id) === parseInt(nextID));
+    
+                this.updateHeroContent(_content, _actualID);
+                this.activateCard(context, _content.id, _actualID);
+            
+                resolve(nextID);
+            });
+        }
     }
 
     goToId(context, id) {

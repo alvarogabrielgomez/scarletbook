@@ -39,14 +39,16 @@ class HeroSectionCarousel {
 
     startCarousel() {
         let context = this;
-        this.work = setInterval(() => { 
-            utils.carouselHandler(context)
+        if (content.length > 1) {
+            this.work = setInterval(() => { 
+                utils.carouselHandler(context)
                 .then(nextID => {
                     // Update ID before handler ends
                     this.actualID = nextID;
                 })
-        }, this.timeShowing);
-
+            }, this.timeShowing);
+        }
+            
         this.initializad = true;
     }
 

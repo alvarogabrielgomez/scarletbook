@@ -21,7 +21,9 @@ class PostsApiController extends ApiBaseController {
                 ORDER BY a.id DESC
                 LIMIT(1)
                 `)
-                posts.push(article[0]);
+                if (article[0]) {
+                    posts.push(article[0]);
+                }
             }
             resolve();
         });
