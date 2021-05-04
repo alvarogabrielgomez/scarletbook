@@ -56,7 +56,8 @@ async function init() {
     //     console.log(`       ${chalk.cyan(postPath)}`);
     // });
     program
-    .option('-f, --file <post-path>', 'post specific file')
+    .option('-rm, --remove <article-slug>', 'remove specific article')
+    .option('-f, --file <article-path>', 'article specific file')
     .parse(process.argv);
     options = program.opts();
 
@@ -70,7 +71,25 @@ async function init() {
         console.error(e)
     }
 
-    publish();
+    if(options.remove) {
+        remove();
+    } else {
+        publish();
+    }
+}
+
+async function remove() {
+    try {
+        await articles.query()
+            .delete()
+            .where('slug', '=', options.remove);
+            console.log(`Removed ${options.remove}`);
+            process.exit(0);
+    } catch (e) {
+        console.error(e);
+        process.exit(1);        
+    }
+    
 }
 
 async function publish() {
