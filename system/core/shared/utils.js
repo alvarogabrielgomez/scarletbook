@@ -3,6 +3,7 @@ const path = require('path');
 const crypto = require('crypto');
 const isObject = require('lodash/isObject');
 const isString = require('lodash/isString');
+var url = require('url');
 var os = require( 'os' );
 
 exports.getLocalIP = function getLocalIP() {
@@ -24,12 +25,6 @@ exports.maintenanceMiddleware = function maintenanceMiddleware (req, res, next) 
 
 exports.convertToAbsolutePath = function convertToAbsolutePath (_path) {
     return path.join(process.cwd(), _path);
-}
-
-
-exports.setHeaders = function setHeaders(req, res, next) {
-    res.setHeader('Cache-Control', 'max-age=86400, public');
-	next();
 }
 
 function matchKeyName(key) {
@@ -74,4 +69,25 @@ exports.makePathsAbsolute = function makePathsAbsolute(JSON, parent = null) {
             // console.log(`${parent ? `${parent}.${key}` : key}: ${JSON[key]}`);
         }
     })
+}
+
+exports.setHeaders = function setHeaders(req, res, next) {
+    const nonce = crypto.randomBytes(16).toString('base64');
+    res.nonce = nonce;
+    res.setHeader('Cache-Control', 'max-age=86400, public');
+    res.setHeader(
+        'Content-Security-Policy',
+        `default-src 'self' https://*.fontawesome.com/ ; font-src 'self' fonts.gstatic.com https://*.fontawesome.com/; img-src 'self' imgur.com i.imgur.com ; script-src 'self' 'nonce-${nonce}' https://*.fontawesome.com/ ; style-src 'self' fonts.googleapis.com 'unsafe-inline' ; frame-src 'self' https://www.youtube.com https://giphy.com/`
+    );
+	next();
+}
+
+exports.getCurrentUrl = function getCurrentUrl(req, res, next) {
+    const currentUrl = url.format({
+        protocol: req.protocol,
+        host: req.get('host'),
+        pathname: req.originalUrl
+      });
+    res.currentUrl = currentUrl;
+    next();
 }

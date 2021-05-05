@@ -5,20 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{{ getMetaTags }}}
+    {{!-- fontawesome --}}
+    <script src="https://kit.fontawesome.com/806d5b2602.js" crossorigin="anonymous"></script>
     {{!-- animate css --}}
     <link rel="stylesheet" href="./css/animate.min.css"/>
     {{!-- style mobile --}}
     <link rel="stylesheet" href="./css/main.css" type="text/css">
     {{!-- style tablet --}}
-    <link rel="stylesheet" href="./css/tablet.css" type="text/css" media="screen and (min-width: 600px)">
+    <link rel="stylesheet" href="./css/tablet.css" type="text/css" media="screen and (min-width: 768px)">
     {{!-- style desktop --}}
-    <link rel="stylesheet" href="./css/desktop.css" type="text/css" media="screen and (min-width: 1000px)">
+    <link rel="stylesheet" href="./css/desktop.css" type="text/css" media="screen and (min-width: 1200px)">
     {{!-- others styles --}}
     <link rel="stylesheet" href="./css/excelsior.css" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     {{!-- scripts --}}
     <script type="module" src="./js/RelatedPosts/relatedPosts.js" defer></script>
+    <script type="module" src="./js/blog-progress-bar.js" defer></script>
 </head>
 <body class="wrapper">
     {{> header}}
@@ -32,13 +35,13 @@
                     </picture>
                 </div>
                 {{/if}}
-                <div class="hero-section__content">
+                <div class="hero-section__content articlepage">
                     <div class="hero-section__header">
                         <h3 class="hero-section__category animate__animated animate__fadeInDown">{{ category }} </h3>
                         <h1 class="hero-section__title animate__animated animate__fadeInDown">{{ title }}</h1>
                         <div class="hero-section__row">
                             <span class="hero-section__date animate__animated animate__fadeInUp">
-                                Actualizado en {{createdAt}}
+                                Actualizado en {{toLocaleDateString createdAt 'pt-BR'}}
                             </span>
                             <span class="hero-section__author animate__animated animate__fadeInUp">
                              Por {{ author }}
@@ -47,9 +50,33 @@
                     </div>
                 </div>
             </div>
+            <div class="read-progress-container">
+                <progress value="50" id="blog-progress-bar" class="blog-progress-bar" max="100"></progress>
+            </div>
             <div class="main-section">
+               {{!-- share menu for mobile --}}
+                    <nav class="social-share-icons__container horizontal">
+                        <ul class="social-share-icons__body">
+                            <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={{currentUrl}}" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.facebook.com/sharer.php?u={{currentUrl}}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://twitter.com/intent/tweet?url={{currentUrl}}&text={{title}}&via=AccentioStudios" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
+                    </nav>
                 <div class="main-section__content">
+                <div class="social-share-icons__track">
+                    <nav class="social-share-icons__container">
+                        <ul class="social-share-icons__body">
+                            <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={{currentUrl}}" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.facebook.com/sharer.php?u={{currentUrl}}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            {{!-- <li><a href="https://twitter.com/intent/tweet?url={{currentUrl}}&text={{title}}&via=AccentioStudios&hashtags={{#greaterThan tags.length 0}}{{#each tags}}{{this}},{{/each}}{{/greaterThan}}"><i class="fab fa-twitter"></i></a></li> --}}
+                            <li><a href="https://twitter.com/intent/tweet?url={{currentUrl}}&text={{title}}&via=AccentioStudios" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                            {{!-- <li><a href=""><i class="fas fa-link"></i></a></li> --}}
+                        </ul>
+                    </nav>
+                </div>
                     <article class="main-section__article">
+                    
+
                         {{{ content }}}
 
                     {{#greaterThan tags.length 0}}
@@ -69,7 +96,7 @@
                 </div>
         </div>
     </main>
-    <section class="related-posts">
+    <section class="related-posts margin-top">
     </section>
     {{> footer}}
 </body>

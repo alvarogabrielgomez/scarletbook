@@ -1,9 +1,35 @@
+:root {
+    --padding-viewport: 7vw;
+}
+
 .main-section__content{
     display: grid;
-    grid-template-columns: 70% auto;
+    grid-template-columns: 1fr auto;
     grid-gap: 30px;
 }
 
 .hero-section__title {
-    max-width: 70%;
+    max-width: 95%;
+}
+
+.header__brand {
+    max-width: 230px;
+}
+
+.main-section__article {
+    max-width: 760px;
+}
+
+.hero-section-with-bg {
+    min-height: 70vh;
+}
+.hero-section-home-carr {
+    min-height: 100vh;
+}
+
+.social-share-icons__track {
+    display: block;
+}
+.social-share-icons__container.horizontal {
+    display: none;
 }

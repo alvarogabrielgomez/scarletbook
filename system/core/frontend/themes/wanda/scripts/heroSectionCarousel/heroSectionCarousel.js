@@ -39,7 +39,7 @@ class HeroSectionCarousel {
 
     startCarousel() {
         let context = this;
-        if (content.length > 1) {
+        if (this.content.length > 1) {
             this.work = setInterval(() => { 
                 utils.carouselHandler(context)
                 .then(nextID => {
@@ -58,9 +58,9 @@ class HeroSectionCarousel {
 
     setMediaQuerys() {
         const medias = [
-            { name: 'mobile', screen: '(max-width: 599px)' }, 
-            { name: 'tablet', screen: '(min-width: 600px)' }, 
-            { name: 'desktop', screen: '(min-width: 1000px)' }
+            { name: 'mobile', screen: '(max-width: 768px)' }, 
+            { name: 'tablet', screen: '(min-width: 769px)' }, 
+            { name: 'desktop', screen: '(min-width: 1200px)' }
         ];
         medias.forEach((media) => {
             this.mediaQuerys[media.name] = window.matchMedia(media.screen);

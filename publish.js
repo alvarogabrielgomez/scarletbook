@@ -141,9 +141,9 @@ function readFile(filePath, encoding = 'utf8') {
     });
 }
 
-function parseMd(articleRaw) {
+function extractYaml(articleRaw) {
     let articleParsed = yamlFront.safeLoadFront(articleRaw)
-    articleParsed.__content = md.render(articleParsed.__content);
+    // articleParsed.__content = md.render(articleParsed.__content);
     return articleParsed;
 }
 
@@ -172,7 +172,7 @@ function readFrontArticle(path) {
                     readed += lineString;
                 }
             }
-            const yamlParsed = parseMd(readed);
+            const yamlParsed = extractYaml(readed);
             console.log(yamlParsed);
             resolve(yamlParsed);
 
@@ -194,7 +194,7 @@ function readArticle(path, slug) {
             if (path) {
                 const articleRaw = await readFile(path);
                 // Parse Markdown and the metadata from yaml front
-                let articleParsed = parseMd(articleRaw);
+                let articleParsed = extractYaml(articleRaw);
                 // Load into articleParsed object the slug for SEO
                 articleParsed.slug = slug;
                 resolve(articleParsed);

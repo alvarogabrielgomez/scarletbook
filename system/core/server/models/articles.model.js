@@ -3,6 +3,7 @@ const { Model } = require('objection');
 const _ = require('lodash');
 const hljs = require('highlight.js');
 const path = require('path');
+const lazy_loading = require('markdown-it-image-lazy-loading');
 const md = require('markdown-it')({
     html: true,
     linkify: true,
@@ -17,6 +18,9 @@ const md = require('markdown-it')({
         }
         return ''; // use external default escaping
     }
+});
+md.use(lazy_loading, {
+    image_size: true
 });
 
 class Articles extends BaseModel {

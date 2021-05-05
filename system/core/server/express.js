@@ -20,6 +20,8 @@ app.set('maintenance', true);
 
 app.use(utils.setHeaders);
 
+app.use(utils.getCurrentUrl);
+
 // Publish content/public folder to /public path
 app.use('/public', express.static(path.join(process.cwd(), './content/public'), {
     maxAge: '4h'
