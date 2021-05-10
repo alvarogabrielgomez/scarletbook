@@ -77,7 +77,7 @@ exports.setHeaders = function setHeaders(req, res, next) {
     res.setHeader('Cache-Control', 'max-age=86400, public');
     res.setHeader(
         'Content-Security-Policy',
-        `default-src 'self' https://*.fontawesome.com/ ; font-src 'self' fonts.gstatic.com https://*.fontawesome.com/; img-src 'self' imgur.com i.imgur.com ; script-src 'self' 'nonce-${nonce}' https://*.fontawesome.com/ https://*.cloudflare.com/' ; style-src 'self' fonts.googleapis.com 'unsafe-inline' ; frame-src 'self' https://www.youtube.com https://giphy.com/`
+        `default-src 'self' https://*.fontawesome.com/ ; font-src 'self' fonts.gstatic.com https://*.fontawesome.com/; img-src 'self' imgur.com i.imgur.com ; script-src 'self' 'nonce-${nonce}' https://*.fontawesome.com/ https://*.cloudflare.com ; style-src 'self' fonts.googleapis.com 'unsafe-inline' ; frame-src 'self' https://www.youtube.com https://giphy.com/`
     );
 	next();
 }
