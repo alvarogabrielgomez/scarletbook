@@ -1,6 +1,6 @@
 ---
-title: ¿Qué es el desarrollo web, y por donde comienzo para ser desarrollador web?
-description: Hoy en día hay una gran cantidad de tecnologías allá afuera cuando se trata de comenzar una carrera en el desarrollo web. Sin embargo, no tiene por que ser una ardua tarea iniciar en el área, no te dejes intimidar por eso, puede llegar a ser más fácil de lo que piensas
+title: ¿Qué es el desarrollo web y por dónde comienzo para ser desarrollador?
+description: Hoy en día hay una gran cantidad de tecnologías allá afuera cuando se trata de comenzar una carrera en el desarrollo web. Sin embargo, no tiene por que ser una ardua tarea iniciar en el área, no te dejes intimidar por eso, puede llegar a ser más fácil de lo que piensas.
 heroimage: https://i.imgur.com/CBbBVwM.jpg
 authorId: 1
 categoryId: 1
@@ -35,15 +35,13 @@ A la vez aprendes HTML puedes comenzar a toquetear **CSS**, el lenguaje de estil
 
 ## Ahora ya viene lo bueno
 
-El paso inmediato a aprender HTML y CSS sería aprender **Javascript**, el verdadero lenguaje de programación. El se encarga de darle interacción con el usuario a la página web. Gracias a él puedes hacer que tu aplicación sea inteligente.
-
-Una vez tengas dominado lo básico, ya puedes comenzar a construir páginas webs **estáticas**. Una página web estática es una página donde no hay interacción a nivel de servidor más que traer la página directamente como está almacenada, sin capacidad de guardar, ni traer algún dato personalizado al cliente. No existe inicio de sesión ni nada muy interesante. Este tipo de páginas webs son perfectas para webs que su contenido no cambia prácticamente nunca, y no necesita de gran mantenimiento para funcionar.
+El paso inmediato a aprender **HTML y CSS** sería aprender **Javascript**, el verdadero lenguaje de programación. Él se encarga de darle interacción con el usuario a la página web y gracias a este, puedes hacer que tu aplicación sea inteligente. Una vez tengas dominado lo básico, ya puedes comenzar a construir páginas webs estáticas, si quieres conocer mas detalles sobre que es una pagina web estatica puedes leer mas en nuestro blog. 
 
 Ahora, si quieres realmente ponerte serio en el asunto viene la parte del **backend**, donde haces que tu aplicación ahora si sea dinámica, use bases de datos, mantenga sesiones, guarde y procese datos antes de ser entregados al front-end en bandeja de plata.
 
 ![Web develop](https://i.imgur.com/yJ5h4FC.jpg)
 
-Nosotros en **Accentio** usamos Javascript del lado de servidor también, para mantenernos más cómodos al usar el mismo lenguaje tanto en el front-end, como en el back-end. Gracias a **NodeJS** puedes ejecutar código javascript en servidores e inclusive en tu propia computadora fuera del navegador. 
+Nosotros en Accentio usamos **Javascript** del lado de servidor también, para mantenernos más cómodos al usar el mismo lenguaje tanto en el front-end, como en el back-end. Gracias a **NodeJS** puedes ejecutar código javascript en servidores e inclusive en tu propia computadora fuera del navegador. 
 
 NodeJS es un **entorno de ejecución** muy poderoso con una gran comunidad detrás de la que podrás sentirte apoyado. Te invito a que le des una oportunidad. Sin embargo, también tienes muchas otras opciones y frameworks como Django  usando Python como lenguaje, Asp Net, con C# y Laravel, con PHP, entre otros. Cualquiera que elijas está bien, sin embargo documentate bien porque cada uno tiene sus pros y contras y depende de lo que quieras hacer puede que alguno te sirva mejor que otro.
 

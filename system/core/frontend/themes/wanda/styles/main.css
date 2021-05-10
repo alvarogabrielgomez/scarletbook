@@ -130,9 +130,6 @@ article h1, article h2, article h3, article h4, article h5, article h6 {
     line-height: 1.33;
 }
 
-.wrapper {
-
-}
 
 .hero-section {
     display: flex;
@@ -249,9 +246,6 @@ article h1, article h2, article h3, article h4, article h5, article h6 {
     max-width: var(--max-width-container);
 }
 
-.main-section__article {
-
-}
 
 .main-section__article-tags {
     /* border-bottom: 1px solid var(--color-line); */
