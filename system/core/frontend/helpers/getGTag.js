@@ -6,7 +6,7 @@ module.exports = function getGtag(id, options) {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', ${id});
+        gtag('config', '${id}');
     </script>`
 }
 

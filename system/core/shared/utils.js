@@ -77,7 +77,7 @@ exports.setHeaders = function setHeaders(req, res, next) {
     res.setHeader('Cache-Control', 'max-age=86400, public');
     res.setHeader(
         'Content-Security-Policy',
-        (`default-src 'self' https://*.fontawesome.com/ ;
+        (`default-src 'self' https://*.fontawesome.com/ https://*.google-analytics.com/;
         font-src 'self' fonts.gstatic.com https://*.fontawesome.com/;
         img-src 'self' imgur.com i.imgur.com https://tracker.metricool.com/ ;
         script-src 'self' 'nonce-${nonce}' https://*.fontawesome.com/ https://*.cloudflare.com ;
