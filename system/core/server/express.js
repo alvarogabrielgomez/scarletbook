@@ -28,11 +28,15 @@ app.use('/public', express.static(path.join(process.cwd(), './content/public'), 
 }));
 
 // Publish internal scarletbook files to to root path
-app.use('/', express.static(path.resolve(__dirname, './public'), {
+app.use('/', express.static(path.resolve(__dirname, './scarletbook/public'), {
     maxAge: '4h'
 }));
 
 app.use(utils.maintenanceMiddleware);
+
+
+app.use("/sitemap.xml", require('./middlewares/generateSitemap'));
+app.use("/robots.txt", require('./middlewares/generateRobotsTxt'));
 
 
 

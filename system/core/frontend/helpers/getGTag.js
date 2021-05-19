@@ -1,13 +1,17 @@
 module.exports = function getGtag(id, options) {
-    return `<!-- Global site tag (gtag.js) - Google Analytics -->
-    <script nonce='${options.data.root.nonce}' async src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>
-    <script nonce='${options.data.root.nonce}'>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', '${id}');
-    </script>`
+    if (process.env.NODE_END == 'production') {
+        return `<!-- Global site tag (gtag.js) - Google Analytics -->
+        <script nonce='${options.data.root.nonce}' async src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>
+        <script nonce='${options.data.root.nonce}'>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+    
+            gtag('config', '${id}');
+        </script>`
+    } else {
+        return '';
+    }
 }
 
 
