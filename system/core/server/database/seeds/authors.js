@@ -13,6 +13,18 @@ exports.seed = async function(knex) {
           name: 'Alvaro Gabriel',
           email: 'alvaro@accentiostudios.com',
           avatar: ''
+        },
+		{
+          id: 2,
+          name: 'Angela Potenza',
+          email: 'angelap@accentiostudios.com',
+          avatar: ''
+        },
+		{
+          id: 3,
+          name: 'Equipo de Contenido',
+          email: 'hello@accentiostudios.com',
+          avatar: ''
         }
       ]);
     });
