@@ -1,8 +1,8 @@
 const { BaseModel } = require('./baseModel');
 const { Model } = require('objection');
 const _ = require('lodash');
-const hljs = require('highlight.js');
 const path = require('path');
+const hljs = require('highlight.js');
 const lazy_loading = require('markdown-it-image-lazy-loading');
 const md = require('markdown-it')({
     html: true,

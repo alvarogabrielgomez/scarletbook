@@ -3,6 +3,27 @@ const { BaseModel } = require('../../../models/baseModel');
 const Articles = require('../../../models/articles.model');
 const knex = BaseModel.knex();
 const debug = require('debug')('scarletbook:controllers:api:v1:posts');
+const jsStringEscape = require('js-string-escape');
+const hljs = require('highlight.js');
+const lazy_loading = require('markdown-it-image-lazy-loading');
+const md = require('markdown-it')({
+    html: true,
+    linkify: true,
+    typographer: true,
+    highlight: (str, lang) => {
+        if(lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(str, {
+                    language: lang
+                }).value;
+            } catch(e) {}
+        }
+        return ''; // use external default escaping
+    }
+});
+md.use(lazy_loading, {
+    image_size: true
+});
 
 class PostsApiController extends ApiBaseController {
 
@@ -39,6 +60,7 @@ class PostsApiController extends ApiBaseController {
         ORDER BY id DESC
         LIMIT(3)
         `);
+    
     return res.status(200).send(posts);
     }
 
@@ -54,7 +76,7 @@ class PostsApiController extends ApiBaseController {
         let content = parseInt(req.query.content);
         let querySelect = [ 'category.name as category', 'title', 'description', 'tags', 'articles.created_at', 'articles.updated_at', 
         'slug', 'articles.id', 'articles.hero_image', 'author.name as author'];
-        if(content === 1) querySelect.push('content');
+        if(content === 1) { querySelect.push('content') };
 
         let articles = await Articles.query()
         .select(...querySelect)
@@ -63,6 +85,15 @@ class PostsApiController extends ApiBaseController {
         .orderBy('articles.id', 'desc')
         .page(page, limit);
 
+        if (articles.results.length > 0) {
+            articles.results.forEach((article) => {
+              article.description = jsStringEscape(article.description);
+                if(content === 1) {
+                    // Parse Markdown string into html string
+                    article.content = md.render(article.content);
+                }
+            });
+        }
 
         took = process.hrtime(before);
         debug('getArticles took', took);
