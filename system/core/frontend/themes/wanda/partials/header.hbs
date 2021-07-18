@@ -1,10 +1,18 @@
-<header class="header {{#if heroImage}} header-transparent {{/if}}">
+<header id="header" class="header {{#if heroImage}} header-transparent {{/if}}">
     <div class="header__content">
-        <a href="/">        
-         <picture class="header__brand animate__animated animate__fadeIn">
+        <a href="/">  
+
+        <picture class="header__brand brand-darkblue animate__animated animate__fadeIn">
+             <source srcset="./public/img/logos/brand-logo-image-md-darkblue.svg" media="(min-width: 1200px)">
+            <img src="./public/img/logos/brand-logo-image-sm-darkblue.svg" alt="Accentio Blog Logo">
+        </picture>
+
+        <picture class="header__brand brand-white animate__animated animate__fadeIn ">
              <source srcset="./public/img/logos/brand-logo-image-md.svg" media="(min-width: 1200px)">
             <img src="./public/img/logos/brand-logo-image-sm.svg" alt="Accentio Blog Logo">
         </picture>
+
+
         </a>
         <div id="menu-header-desktop" class="header__menu">
             <nav>
@@ -17,15 +25,12 @@
         </div>
         <div class="header__cta animate__animated animate__fadeIn">
             <a id="cta-header-desktop" href="https://accentiostudios.com" 
-            class="excelsior-hero-button-xl 
-            {{#if heroImage}} 
-                white-muted-color 
-            {{else}}
-                primary-muted-l-color 
-            {{/if}} 
-            primary-muted-l-color">
+            class="excelsior-hero-button-xl">
                 Inicia con nosotros
             </a>
         </div>
     </div>
+<div class="read-progress-container">
+    <progress value="50" id="blog-progress-bar" class="blog-progress-bar" max="100"></progress>
+</div>
 </header>

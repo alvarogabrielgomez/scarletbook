@@ -54,6 +54,15 @@ article img {
     max-width: 160px;
 }
 
+.header-fixed .header__content .header__brand {
+    max-width: 120px;
+}
+
+.header-fixed .header__content .header__cta .excelsior-hero-button-xl {
+    padding: 0.5rem 1.8rem;
+}
+
+
 .footer__menu {
     grid-gap: 5rem;
     grid-template-columns: auto auto;

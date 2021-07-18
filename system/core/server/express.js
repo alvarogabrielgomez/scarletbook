@@ -18,6 +18,8 @@ app.use(express.urlencoded({
 // Set Maintenance mode ON
 app.set('maintenance', true);
 
+app.use(utils.generateNonce);
+
 app.use(utils.setHeaders);
 
 app.use(utils.getCurrentUrl);

@@ -49,10 +49,10 @@ class FrontEndEngine {
         
             // Publish theme styles and scripts
             server.use('/css', require('express').static(`${themePath}/styles`, {
-                maxAge: '24h'
+                maxAge: '24hr'
             }));
             server.use('/js', require('express').static(`${themePath}/scripts`, {
-                maxAge: '24h'
+                maxAge: '1hr'
             }));
             
         

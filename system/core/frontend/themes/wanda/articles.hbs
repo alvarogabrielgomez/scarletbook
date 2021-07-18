@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     {{!-- scripts --}}
     <script type="module" src="./js/RelatedPosts/relatedPosts.js" defer></script>
-    <script type="module" src="./js/blog-progress-bar.js" defer></script>
+    <script type="module" src="./js/articles-js.js" defer></script>
 
     {{{getGTag "G-L7S2FY1KYD"}}}
 </head>
@@ -53,9 +53,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="read-progress-container">
-                <progress value="50" id="blog-progress-bar" class="blog-progress-bar" max="100"></progress>
             </div>
             <div class="main-section">
                {{!-- share menu for mobile --}}
@@ -103,6 +100,7 @@
     <section class="related-posts margin-top">
     </section>
     {{> footer}}
+    {{{getPixelMetricool 'd8f4351f26c40a5278eaa38710d5deba'}}}
 </body>
 <script nonce="{{{nonce}}}">
     document.addEventListener("DOMContentLoaded", () => {

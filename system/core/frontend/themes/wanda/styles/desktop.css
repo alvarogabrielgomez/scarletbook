@@ -16,6 +16,10 @@
     max-width: 230px;
 }
 
+.header-fixed .header__content .header__brand {
+    max-width: 190px;
+}
+
 .main-section__article {
     max-width: 760px;
 }
