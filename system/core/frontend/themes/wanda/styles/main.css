@@ -349,6 +349,11 @@ article blockquote {
     animation-duration: 400ms;
 }
 
+.header-fixed .header__content .header__brand {
+    max-width: 110px;
+    min-width: 110px;
+}
+
 .header-transparent {
     border-bottom: none;
     background: transparent;
