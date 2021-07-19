@@ -4,8 +4,8 @@ const utils = new Utils();
 class HeroSectionCarousel {
     constructor() {
         this.initializad = false;
-        this.actualID = 1;
-        this.limit = 1;
+        this.actualID = 0;
+        this.limit = 0;
         this.timeShowing = 7000; // MS
         this.content = [];
         this.mediaQuerys = [];
@@ -16,9 +16,9 @@ class HeroSectionCarousel {
         let context = this;
         this.getContent().then(_ => this.preloadImages()
         .then((_) => {
-            this.limit = this.content.length;
+            this.limit = this.content.length - 1;
             this.setMediaQuerys();
-            utils.loadLayout();
+            utils.loadLayout(context);
             utils.loadCards(context);
             utils.loadHeroContent(context, 0);
             this.startCarousel();
@@ -53,7 +53,12 @@ class HeroSectionCarousel {
     }
 
     stopCarousel() {
-        clearInterval(this.work);
+        return clearInterval(this.work);
+    }
+
+    resetInterval() {
+        this.stopCarousel();
+        this.startCarousel();
     }
 
     setMediaQuerys() {
@@ -87,23 +92,31 @@ class HeroSectionCarousel {
         this.startCarousel();
     }
 
-    goToId(id) {
+    async goToId(id) {
         let context = this;
-        if (id !== this.actualID) {
-            this.stopCarousel();
-            utils.goToId(context, id).then(nextID => {
-                this.actualID = nextID;
-                this.startCarousel();
-            });
-        }
+        return new Promise((resolve, reject) => {
+            if (id !== this.actualID) {
+                this.stopCarousel();
+                utils.goToId(context, id).then(nextID => {
+                    this.actualID = nextID;
+                    this.startCarousel();
+                    resolve(nextID);
+                });
+            }
+        });
     }
 
     getContent() {
         return Promise.resolve(
-            fetch('./api/getLastEachCategory')
+            fetch('./api/getLastThree')
                 .then(async (raw) => {
                     const data = await raw.json();
-                    this.content = data;
+                    this.content = data.map((item, index) => {
+                        return {
+                            index,
+                            ...item
+                        };
+                    });
                 })
         )
     }

@@ -13,6 +13,7 @@ module.exports = function () {
 
     router
         .get('/getLastEachCategory', (req, res) => postsApiController.getLastEachCategory(req, res))
+        .get('/getLastThree', (req, res) => postsApiController.getLastThree(req, res))
         .get('/articles', (req, res) => postsApiController.getArticles(req, res))
 
     return router;

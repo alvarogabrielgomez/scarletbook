@@ -22,39 +22,14 @@ export default class Utils {
         return newPicture;
     }
 
-    // setBackgroundImage(image, newID, oldID) {
-        
-    //     const backgroundImage = document.querySelector('div.hero-section__background');
-    //     var newPicture = document.createElement('picture');
-    //     newPicture.setAttribute('image-id', newID);
-    //     newPicture.classList.add('animate__animated', 'animate__fadeIn', 'hero-section__background-image');
-    //     newPicture.appendChild(image);
-    //     // newPicture.innerHTML = `<img class="responsive-picture" src="${url}" alt="Awesome hero image">`;
-    //     backgroundImage.appendChild(newPicture);
-         
-    //     // Is not the first image
-    //     if (oldID !== null) {
-    //         const oldPicture = document.querySelectorAll(`[image-id="${oldID}"]`);
-    //         setTimeout(() => {
-    //             oldPicture.forEach((item) => {
-    //                 backgroundImage.removeChild(item);
-    //             });
-    //         }, 600);
-    //         // newPicture.addEventListener('animationend', () => {
-    //         // });
-    //     }
-
-    //     return newPicture;
-    // }
-
-    generateCard(context, cardContent) {
+    generateCard(context, cardContent, index) {
         const newCard = document.createElement('li');
-        newCard.setAttribute('card-id', cardContent.id);
+        newCard.setAttribute('card-id', index);
         newCard.classList.add('carr-cards__card', 'animate__animated', 'animate__fadeInUp');
 
         const newCardBody = document.createElement('a');
         newCardBody.setAttribute('href', '#');
-        newCardBody.onclick = () => heroSectionCarousel.goToId(cardContent.id);
+        newCardBody.onclick = () => heroSectionCarousel.goToId(index);
         newCardBody.classList.add('carr-cards__card-body');
         newCardBody.innerHTML = `
         <h3 class="carr-cards__category">${cardContent.category}</h3>
@@ -69,8 +44,8 @@ export default class Utils {
     generateListOfCards(context) {
         let list = [];
         const listOfCardsContent = context.content;
-        listOfCardsContent.forEach(cardContent => {
-            list.push(this.generateCard(context, cardContent));
+        listOfCardsContent.forEach((cardContent, index) => {
+            list.push(this.generateCard(context, cardContent, index));
         });
         return list;
     }
@@ -86,10 +61,10 @@ export default class Utils {
         carrCardsTimeoutContainer.classList.add('carr-cards__timeout-container');
         
         // StateBar
-        context.content.forEach((item) => {
+        context.content.forEach((item, index) => {
             const carrCardsTimeout = document.createElement('div');
             carrCardsTimeout.classList.add('carr-cards__timeout');
-            carrCardsTimeout.setAttribute('card-id', item.id);
+            carrCardsTimeout.setAttribute('card-id', index);
             carrCardsTimeoutContainer.appendChild(carrCardsTimeout);
         });
 
@@ -111,24 +86,38 @@ export default class Utils {
         heroSectionCards.appendChild(heroSectionCardsCarrContent);
     }
 
-    loadLayout() {
+    loadLayout(context) {
         const heroSection = document.querySelector('section.hero-section-home-carr')
         heroSection.innerHTML = "";
         let html = `
         <div class="hero-section__background-frontlight animate__animated animate__fadeIn"></div>
+        <div class="carr-mobile-controls__container">
+            <div class="carr-mobile-controls__back">
+            </div>
+            <div class="carr-mobile-controls__next">
+            </div>
+        </div>
         <div class="hero-section__background">
         </div>
         <div class="hero-section__content">
             <div class="hero-section__header">
                 <h3 class="hero-section__category animate__animated animate__fadeInDown"></h3>
                 <h1 class="hero-section__title animate__animated animate__fadeInDown"></h1>
-                <a href="#" class="hero-section__cta excelsior-hero-button-xl animate__animated animate__fadeInUp">Leer articulo</a>
             </div>
+        </div>
+        <div class="hero-section__button">
+            <a href="#" class="hero-section__cta excelsior-hero-button-xl animate__animated animate__fadeInUp">Leer articulo</a>
         </div>
         <div class="hero-section-home-carr__cards-container">
         </div>
         `;
         heroSection.innerHTML = html;
+
+        const nextButton = document.querySelector('section.hero-section-home-carr div.carr-mobile-controls__container div.carr-mobile-controls__next');
+        const prevButton = document.querySelector('section.hero-section-home-carr div.carr-mobile-controls__container div.carr-mobile-controls__back');
+
+        nextButton.onclick = () => this.nextCard(context);
+        prevButton.onclick = () => this.prevCard(context);
     }
 
     loadHeroContent(context, id) {
@@ -136,9 +125,13 @@ export default class Utils {
 
         const category = document.querySelector('div.hero-section__content div.hero-section__header h3.hero-section__category');
         const title = document.querySelector('div.hero-section__content div.hero-section__header h1.hero-section__title');
-        const ctaButton = document.querySelector('div.hero-section__content div.hero-section__header a.hero-section__cta');
+        const ctaButton = document.querySelector('div.hero-section__button a.hero-section__cta');
+        const nextButton = document.querySelector('section.hero-section-home-carr div.carr-mobile-controls__container div.carr-mobile-controls__next');
+        const prevButton = document.querySelector('section.hero-section-home-carr div.carr-mobile-controls__container div.carr-mobile-controls__back');
 
-        this.setBackgroundImage(_content.image, _content.id, null);
+
+
+        this.setBackgroundImage(_content.image, id, null);
         category.textContent = _content.category;
         category.classList.remove('animate__animated', 'animate__fadeOutDown');
         category.classList.add('animate__animated', 'animate__fadeInDown');
@@ -146,26 +139,33 @@ export default class Utils {
         title.classList.remove('animate__animated', 'animate__fadeOutDown');
         title.classList.add('animate__animated', 'animate__fadeInDown');
         ctaButton.setAttribute('href', _content.articleUrl);
+        nextButton.onclick = () => this.nextCard(context);
+        prevButton.onclick = () => this.prevCard(context);
 
-        this.activateCard(context, _content.id, null);
+        this.activateCard(context, id, null);
     }
 
     /**
     * Update the Hero Content with the new content
-    * @param {object} content The new content with the new ID
+    * @param {object} context The Context
+    * @param {object} nextID the next ID
     * @param {object} actualID The actual id (Old ID)
     */
-    updateHeroContent(content, actualID) {
+    updateHeroContent(context, nextID, actualID) {
         try {
+
+            const content = context.content[nextID];
 
             const category = document.querySelector('div.hero-section__content div.hero-section__header h3.hero-section__category');
             const title = document.querySelector('div.hero-section__content div.hero-section__header h1.hero-section__title');
             const heroImage = document.querySelector('section.hero-section-home-carr div.hero-section__background picture');
-            const ctaButton = document.querySelector('div.hero-section__content div.hero-section__header a.hero-section__cta');
+            const ctaButton = document.querySelector('div.hero-section__button a.hero-section__cta');
+            const nextButton = document.querySelector('section.hero-section-home-carr div.carr-mobile-controls__container div.carr-mobile-controls__next');
+            const prevButton = document.querySelector('section.hero-section-home-carr div.carr-mobile-controls__container div.carr-mobile-controls__back');
     
             // First Remove
     
-            this.setBackgroundImage(content.image, content.id, actualID);
+            this.setBackgroundImage(content.image, nextID, actualID);
             category.classList.remove('animate__animated', 'animate__fadeInDown');
             category.classList.add('animate__animated', 'animate__fadeOutDown');
             title.classList.remove('animate__animated', 'animate__fadeInDown');
@@ -184,6 +184,8 @@ export default class Utils {
                 title.classList.remove('animate__animated', 'animate__fadeOutDown');
                 title.classList.add('animate__animated', 'animate__fadeInDown');
                 ctaButton.setAttribute('href', content.articleUrl);
+                nextButton.onclick = () => this.nextCard(context, true);
+                prevButton.onclick = () => this.prevCard(context, true);
             });
         
         } catch (e) {
@@ -239,32 +241,46 @@ export default class Utils {
     }
 
     carouselHandler(context) {
+        return this.nextCard(context);
+    }
+
+
+    nextCard(context) {
         if (context.content.length > 1) {
             return new Promise((resolve, reject) => {
-                let _content = context.content;
                 let _actualID = context.actualID
                 let _limit = context.limit;
-                let nextID;
-    
-                nextID = _actualID < _limit ? _actualID + 1 : 1;
-                _content = _content.find(x => parseInt(x.id) === parseInt(nextID));
-    
-                this.updateHeroContent(_content, _actualID);
-                this.activateCard(context, _content.id, _actualID);
+                let _nextID = _actualID < _limit ? _actualID + 1 : 0;
+
+                heroSectionCarousel.goToId(_nextID).then(nextID => {
+                    resolve(nextID);
+                });
             
-                resolve(nextID);
+            });
+        }
+    }
+
+    prevCard(context) {
+        if (context.content.length > 1) {
+            return new Promise((resolve, reject) => {
+                let _actualID = context.actualID
+                let prevID = _actualID > 0 ? _actualID - 1 : 0
+
+                heroSectionCarousel.goToId(prevID).then(prevID => {
+                    resolve(prevID);
+                });
+            
             });
         }
     }
 
     goToId(context, id) {
         return new Promise((resolve, reject) => {
-            const nextID = id;
+            const nextID = parseInt(id);
             let _actualID = context.actualID
     
-            const _content = context.content.find(x => parseInt(x.id) === parseInt(id));
-            this.updateHeroContent(_content, _actualID);
-            this.activateCard(context, _content.id, _actualID);
+            this.updateHeroContent(context, nextID, _actualID);
+            this.activateCard(context, nextID, _actualID);
 
             resolve(nextID);
         });
