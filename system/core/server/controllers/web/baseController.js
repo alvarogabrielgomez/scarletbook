@@ -14,7 +14,8 @@ class BaseController {
                 return res.render(route, {
                     ... payload,
                     nonce: res.nonce,
-                    currentUrl: res.currentUrl
+                    currentUrl: res.currentUrl,
+                    hostUrl: res.hostUrl
                 });
         } else {
             res.status(500);

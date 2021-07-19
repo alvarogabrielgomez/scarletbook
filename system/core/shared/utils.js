@@ -107,6 +107,12 @@ exports.getCurrentUrl = function getCurrentUrl(req, res, next) {
         host: req.get('host'),
         pathname: req.originalUrl
       });
+    const hostUrl = url.format({
+        protocol: req.protocol,
+        host: req.get('host'),
+        pathname: '/'
+      });
     res.currentUrl = currentUrl;
+    res.hostUrl = hostUrl;
     next();
 }

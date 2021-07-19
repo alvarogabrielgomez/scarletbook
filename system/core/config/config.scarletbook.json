@@ -1,6 +1,10 @@
 {
     "website": {
       "title": "ScarletBook",
+      "publisher": {
+        "type": "Organization",
+        "name": "Accentio Studios"
+      },
       "theme": {
         "name": "wanda",
         "directory": "/system/core/frontend/themes"

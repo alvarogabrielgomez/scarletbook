@@ -4,6 +4,7 @@ class Website {
     constructor(website) {
         this.theme = website.theme || 'wanda',
         this.title = website.title || 'ScarletBook Blog';
+        this.author = website.author || 'Accentio Studios';
         this.description = website.description || 'NodeJS + SQLite + Markdown blog system';
         this.type = website.type || 'website';
         this.url = website.url || null;
