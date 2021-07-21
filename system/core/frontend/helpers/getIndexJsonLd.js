@@ -6,15 +6,20 @@ module.exports = function getIndexJsonLd(options) {
 
     const jsonLd = {
         "@context": "https://schema.org",
-        "@id": pathFunction.join(mainPath, '#organization'),
         "@type": "Organization",
-        "name": options.data.website.title,
+        "@id": pathFunction.join(mainPath, '#organization'),
         "url": mainPath,
+        "name": options.data.website.title,
         "sameAs": options.data.website.publisher.sameAs,
-        "parentOrganization":{
+        "logo": {
+            "@type": "ImageObject",
+            "@id": pathFunction.join(mainPath, '#logo'),
+            "url": pathFunction.join(mainPath, '/logos/sm_darkblue_rounded.png')
+        },
+        "parentOrganization": {
             "@type": options.data.website.publisher.parentOrganization.type,
-            "name": options.data.website.publisher.parentOrganization.name,
             "@id": pathFunction.join(options.data.website.publisher.parentOrganization.url, '#organization'),
+            "name": options.data.website.publisher.parentOrganization.name,
             "url": options.data.website.publisher.parentOrganization.url
          },
     };
