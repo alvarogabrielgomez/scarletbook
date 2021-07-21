@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const utils = require('../shared/utils');
+const registerAllMiddlewares = require('./utils/registerAllMiddlewares');
 const app = express();
 const oneHour = 3600000; 
 
@@ -17,6 +18,8 @@ app.use(express.urlencoded({
 
 // Set Maintenance mode ON
 app.set('maintenance', true);
+
+registerAllMiddlewares(app);
 
 app.use(utils.generateNonce);
 
@@ -33,14 +36,6 @@ app.use('/public', express.static(path.join(process.cwd(), './content/public'), 
 app.use('/', express.static(path.resolve(__dirname, './scarletbook/public'), {
     maxAge: '4h'
 }));
-
-app.use(utils.maintenanceMiddleware);
-
-
-app.use("/sitemap.xml", require('./middlewares/generateSitemap'));
-app.use("/robots.txt", require('./middlewares/generateRobotsTxt'));
-
-
 
 
 module.exports = app;

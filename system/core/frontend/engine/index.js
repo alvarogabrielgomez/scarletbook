@@ -1,15 +1,15 @@
+const coreHelpers = require('../helpers');
 const path = require('path');
 const config = require('../../config');
-const oneHour = 3600000; 
 
+/**
+* Create the handlebars instance with the helpers in it
+*/
 class FrontEndEngine {
-    /**
-    * Create the handlebars instance with the helpers in it
-    */
-    createHsb() {
+    constructor() {
         // Create Handlebars instance
-        var exphbs  = require('express-handlebars');
-        var hbs = exphbs.create({
+        this.exphbs = require('express-handlebars');
+        this.hbsInstance = this.exphbs.create({
             extname: '.hbs',
             defaultLayout: false,
             helpers: {
@@ -17,8 +17,6 @@ class FrontEndEngine {
                 bar: function () { return 'BAR BOOT!'; }
             }
         });
-    
-        return hbs;
     }
 
     /**
@@ -37,10 +35,40 @@ class FrontEndEngine {
     }
 
     /**
+    * Register Helpers async
+    * Help to register the helper into Handlebars engine
+    */
+     asyncRegister(name, fn) {
+        const _this = this;
+        return new Promise((resolve, reject) => {
+            try {
+                _this.hbsInstance.handlebars.registerHelper(name, fn);
+                resolve();
+            }
+            catch(e) {
+                reject(e);
+            }
+        });
+    }
+
+    /**
+    * Register all helpers async
+    */
+     registerAllHelpers(){
+        Object.keys(coreHelpers).forEach(async (key, index) => {
+            await this.asyncRegister(key, coreHelpers[key]);
+        });
+    }
+
+    /**
     * Configure the Theme selected
     */
-    setTheme(hbsInstance, server) {
-        return new Promise((resolve, reject) => {
+    setTheme(server) {
+        return new Promise(async (resolve, reject) => {
+
+            // Set all helpers
+            await this.registerAllHelpers();
+
             // Getting theme absolute path
             const themePath = path.join(this.themeDirectory, this.themeName);
         
@@ -57,7 +85,7 @@ class FrontEndEngine {
             
         
             if (config.get('env') !== 'production') {
-                hbsInstance.handlebars.logger.level = 0;
+                this.hbsInstance.handlebars.logger.level = 0;
             }
 
             // Save website default metadata into app locals
@@ -66,7 +94,7 @@ class FrontEndEngine {
             };
                 
             // Set handlebars engine into express app
-            server.engine('.hbs', hbsInstance.engine);
+            server.engine('.hbs', this.hbsInstance.engine);
             server.set('view engine', '.hbs');
         
             // Done

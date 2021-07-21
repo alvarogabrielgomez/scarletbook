@@ -3,7 +3,19 @@
       "title": "ScarletBook",
       "publisher": {
         "type": "Organization",
-        "name": "Accentio Studios"
+        "name": "Accentio Studios",
+        "url": "https://accentiostudios.com/",
+        "sameAs":[
+          "https://www.facebook.com/AccentioStudios/",
+          "https://www.instagram.com/AccentioStudios/",
+          "https://www.linkedin.com/company/AccentioStudios",
+          "https://twitter.com/AccentioStudios"
+        ],
+        "parentOrganization":{
+          "type":"Organization",
+          "name":"Accentio Studios",
+          "url":"https://accentiostudios.com/"
+       }
       },
       "theme": {
         "name": "wanda",

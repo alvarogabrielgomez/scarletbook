@@ -1,4 +1,4 @@
-const BaseController = require('./baseController');
+const BaseController = require('./base.controller');
 const Articles = require('../../models/articles.model');
 
 class BlogController extends BaseController {

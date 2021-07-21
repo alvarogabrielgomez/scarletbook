@@ -10,18 +10,14 @@ module.exports = function getArticleJsonLd(options) {
 
     let dateModified = moment(options.data.root.updatedAt);
     dateModified = dateModified.format("YYYY-MM-DD")
-    
-    let genres = [
-        options.data.root.category,
-        ...options.data.root.tags
-    ];
 
     const jsonLd = {
         "@context": "https://schema.org",
+        "@id": pathFunction.join(mainPath, '#blogposting'),
         "@type": "BlogPosting",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": mainPath
+            "@id": pathFunction.join(mainPath, '#webpage')
           },
         "headline":  options.data.root.title ? options.data.root.title : options.data.website.title,
         "image": [
@@ -44,6 +40,13 @@ module.exports = function getArticleJsonLd(options) {
               "url": pathFunction.join(mainPath, '/logos/sm_darkblue_rounded.png')
             }
           },
+        "sameAs": options.data.website.publisher.sameAs,
+        "parentOrganization":{
+            "@type": options.data.website.publisher.parentOrganization.type,
+            "name": options.data.website.publisher.parentOrganization.name,
+            "@id": `${options.data.website.publisher.parentOrganization.url}/#organization`,
+            "url": options.data.website.publisher.parentOrganization.url
+         },
         "description": options.data.root.description
     };
 

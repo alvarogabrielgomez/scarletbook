@@ -1,22 +1,15 @@
-const path = require('path');
-const Website = require('./server/models/website.model');
-const _ = require('lodash');
 var debug = require('debug')('scarletbook:boot');
 
 /**
   * Init the Scarlet Core
   * @param {object} server      Object loaded with the express server
-  * @param {object} config      Object loaded with the nconf
   */
  async function initCore(server) {
     return new Promise(async (resolve, reject) => {
 
         // 1 Setting Theme
-        const ftEngine = require('./frontend/engine/FrontEndEngine')();
-        const hbsInstance = ftEngine.createHsb();
-        const registerHelper = require('./frontend/engine/registerHelper')(hbsInstance);
-        await registerHelper.registerAllHelpers();
-        await ftEngine.setTheme(hbsInstance, server);
+        const frontend = require('./frontend/engine')();
+        await frontend.setTheme(server);
 
         // 2 Setting Router
         const routerRegister = require('./server/router')();
@@ -51,6 +44,8 @@ module.exports = async function bootSystem() {
         console.log('☕️ - Loading express server in maintenence mode...');
         console.log();
         server = await require('./server')();
+
+        // process.exit(0);
 
         // Init Database
         console.log('📦 - Setting SQLite3 Database...');

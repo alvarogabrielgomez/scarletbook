@@ -1,18 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const getFilesFolder = require('../../shared/getFilesFolder');
 
-const helpers = {};
-
-const helperFiles = fs.readdirSync(__dirname, {
-    withFileTypes: true 
-}).filter(dirent => dirent.isFile()).map(dirent => dirent.name);
-
-helperFiles.forEach((helper) => {
-    if (helper === 'index.js') { return; }
-    if (path.extname(helper) === '.js') {
-        let name = helper.replace(/.js$/, '');
-        return helpers[name] = require(path.join(__dirname, helper));
-    }
-});
+const helpers = getFilesFolder(__dirname, 'js', ['index']);
 
 module.exports = helpers;
