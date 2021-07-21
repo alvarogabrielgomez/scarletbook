@@ -13,7 +13,7 @@ module.exports = function getArticleJsonLd(options) {
 
     const jsonLd = {
         "@context": "https://schema.org",
-        "@id": pathFunction.join(mainPath, '#blogposting'),
+        "@id": '#blogposting',
         "@type": "BlogPosting",
         "mainEntityOfPage": {
             "@type": "WebPage",

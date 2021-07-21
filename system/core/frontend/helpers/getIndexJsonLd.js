@@ -7,7 +7,7 @@ module.exports = function getIndexJsonLd(options) {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "@id": pathFunction.join(mainPath, '#organization'),
+        "@id": '#organization',
         "url": mainPath,
         "name": options.data.website.title,
         "sameAs": options.data.website.publisher.sameAs,
