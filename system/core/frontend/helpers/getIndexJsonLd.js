@@ -13,12 +13,12 @@ module.exports = function getIndexJsonLd(options) {
         "sameAs": options.data.website.publisher.sameAs,
         "logo": {
             "@type": "ImageObject",
-            "@id": pathFunction.join(mainPath, '#logo'),
+            "@id": '#logo',
             "url": pathFunction.join(mainPath, '/logos/sm_darkblue_rounded.png')
         },
         "parentOrganization": {
+            "@id": '#organization',
             "@type": options.data.website.publisher.parentOrganization.type,
-            "@id": pathFunction.join(options.data.website.publisher.parentOrganization.url, '#organization'),
             "name": options.data.website.publisher.parentOrganization.name,
             "url": options.data.website.publisher.parentOrganization.url
          },

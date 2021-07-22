@@ -15,6 +15,7 @@ module.exports = function getArticleJsonLd(options) {
         "@context": "https://schema.org",
         "@id": '#blogposting',
         "@type": "BlogPosting",
+        "url": mainPath,
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": pathFunction.join(mainPath, '#webpage')
@@ -42,9 +43,9 @@ module.exports = function getArticleJsonLd(options) {
           },
         "sameAs": options.data.website.publisher.sameAs,
         "parentOrganization":{
+            "@id": '#organization',
             "@type": options.data.website.publisher.parentOrganization.type,
             "name": options.data.website.publisher.parentOrganization.name,
-            "@id": `${options.data.website.publisher.parentOrganization.url}/#organization`,
             "url": options.data.website.publisher.parentOrganization.url
          },
         "description": options.data.root.description

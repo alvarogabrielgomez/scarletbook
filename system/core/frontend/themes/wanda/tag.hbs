@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Tags | {{ data.website.title }}</title>
+    <meta property="og:title" content=" Tags | {{ data.website.title }}">
+    <meta property="og:site_name" content=" Tags | {{ data.website.title }}">
+    <meta name="twitter:title" content=" Tags | {{ data.website.title }}">
+    <meta name="description" content="{{ data.website.description }}">
+    <meta property="og:description" content="{{ data.website.description }}">
+    <meta name="twitter:description" content="{{ data.website.description }}">
+    {{{ getMetaTags }}}
+    <link rel="canonical" href="{{ data.website.url }}/tag">
+    {{{ getIndexJsonLd }}}
+    {{!-- animate css --}}
+    <link rel="stylesheet" href="../css/animate.min.css"/>
+    {{!-- style mobile --}}
+    <link rel="stylesheet" href="../css/main.css" type="text/css">
+    {{!-- style tablet --}}
+    <link rel="stylesheet" href="../css/tablet.css" type="text/css" media="screen and (min-width: 768px)">
+    {{!-- style desktop --}}
+    <link rel="stylesheet" href="../css/desktop.css" type="text/css" media="screen and (min-width: 1200px)">
+    {{!-- others styles --}}
+    <link rel="stylesheet" href="../css/excelsior.css" type="text/css">
+    {{!-- fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+    {{{getGTag "G-L7S2FY1KYD"}}}
+
+</head>
+<body class="wrapper">
+    {{> header}}
+    <main class="main">
+        <div class="breadcrumb__container">
+            <ul class="breadcrumb__content">
+                <li><a href="/">Home</a></li>
+                <li>Tags</li>
+            </ul>
+        </div>
+        <section class="related-posts related-posts-tags white">
+            <div class="related-posts__content">
+                <h1 class="related-posts__header left">{{ tag }}</h1>
+                <ul class="related-posts__grid">
+                    {{#each query}}
+                    <li class="related-card">
+                        <a class="related-card__body" href="/{{this.slug}}">
+                            <div class="related-card__media-wrapper">
+                                <img src="{{this.heroImage}}" alt="{{this.title}}">
+                            </div>
+                            <div class="related-card__content">
+                                <span class="related-card__category">{{this.category}}</span>
+                                <h1>{{this.title}}</h1>
+                                <p>{{this.description}}</p>
+                                <span class="related-card__readmore">Leer más &gt;</span>
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </section>
+    </main>
+    {{> footer}}
+</body>
+
+</html>

@@ -61,6 +61,10 @@ class Articles extends BaseModel {
         }
     }
 
+    /**
+    * Gets the article using the slug in the database
+    * @param {object} slug       The slug of the article
+    */
     static async get(slug) {
         // Getting from Database using Objection.js
         let querySelect = [ 'category.name as category', 'title', 'description', 'tags', 'articles.created_at', 'articles.updated_at', 
@@ -82,6 +86,17 @@ class Articles extends BaseModel {
             // Return null to controller
             data = null;
         }
+        return data;
+    }
+
+    static async getAllByTag(tag) {
+        let querySelect = [ 'category.name as category', 'title', 'description', 'tags', 'articles.created_at', 'articles.updated_at', 
+        'slug', 'articles.id', 'articles.hero_image', 'author.name as author'];
+        let data = await this.query()
+        .select(...querySelect)
+        .joinRelated({ category: true, author: true })
+        .where('tags', 'like', `%${tag}%`);
+        
         return data;
     }
 

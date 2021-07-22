@@ -114,3 +114,7 @@ article img {
     max-width: 200px;
     margin: 4rem auto;
 }
+
+.breadcrumb__container {
+    margin-top: 7rem;
+}

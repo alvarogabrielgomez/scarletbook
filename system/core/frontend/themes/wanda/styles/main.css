@@ -25,6 +25,7 @@
     --hero-cards-height-tablet-desktop: 165px;
     --font-family-heading: 'Montserrat', sans-serif;
     --font-family: 'Source Sans Pro', sans-serif;
+    --spacing-unit: 2.5rem;
 }
 
 html {
@@ -112,6 +113,17 @@ p.poweredby{
     font-size: 1.4rem;
     line-height: 1rem;
     font-weight: 600;
+}
+
+.mt-1 {
+    margin-top: var(--spacing-unit);
+}
+.mt-2 {
+    margin-top: calc(var(--spacing-unit) * 2);
+}
+
+.main {
+    min-height: 90vh;
 }
 
 article {
@@ -334,7 +346,7 @@ article blockquote {
 }
 
 .header {
-    position: absolute;
+    position: relative;
     width: 100%;
     top:0;
     background: transparent;
@@ -398,6 +410,7 @@ article blockquote {
 }
 
 .header-transparent {
+    position: absolute;
     border-bottom: none;
     background: transparent;
 }
@@ -524,6 +537,43 @@ article blockquote {
     height: 100%;
 }
 
+.breadcrumb__container {
+    padding: 0 var(--padding-viewport);
+    background-color: white;
+    margin-top: 3rem;
+}
+
+ul.breadcrumb__content {
+    font-family: var(--font-family-heading);
+    max-width: var(--max-width-container-extended);
+    list-style: none;
+    margin: 4px auto;
+    padding-left: 0.5rem;
+    font-weight: 600;
+    letter-spacing: -0.05rem;
+    font-stretch: expanded;
+}
+
+ul.breadcrumb__content li {
+    display: inline;
+    font-size: 1.7rem;
+}
+
+ul.breadcrumb__content li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+ul.breadcrumb__content li a {
+    color: var(--color-blue-ac);
+    text-decoration: none;
+}
+
+ul.breadcrumb__content li a:hover {
+    color: var(--color-blue-ac);
+    text-decoration: underline;
+}
+
 .related-posts {
     position: relative;
     width: 100%;
@@ -547,7 +597,7 @@ article blockquote {
     width: 100%;
     font-size: 200%;
     margin: 0;
-    margin-bottom: 4rem;
+    margin-bottom: 3.2rem;
 }
 
 .related-posts__header.left {
@@ -573,6 +623,11 @@ article blockquote {
 
 .related-posts.white .related-posts__content .related-posts__header {
     color: var(--color-text);
+}
+
+.related-posts.related-posts-tags {
+    padding: 0rem var(--padding-viewport);
+    padding-bottom: 4rem;
 }
 
 .related-posts__grid {

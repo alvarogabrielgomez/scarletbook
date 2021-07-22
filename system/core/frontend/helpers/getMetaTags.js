@@ -21,131 +21,210 @@ function addMultipleMetaTags(metaAttributes, content) {
     return tags;
 }
 
-function metaTagsTitle(path) {
+function metaTagsTitle(title) {
     let tags = [];
     const metaAttributes = [{'property':'og:title'}, {'property':'og:site_name'}, {'name':'twitter:title'}];
-    const content = path.data.root.title ? `${path.data.root.title}  | ${path.data.website.title}` : path.data.website.title;
-    tags.push(`<title>${content}</title>`);
-    tags.push(...addMultipleMetaTags(metaAttributes, content));
+    tags.push(`<title>${title}</title>`);
+    tags.push(...addMultipleMetaTags(metaAttributes, title));
     return tags;
 }
 
 
-function metaTagsDesc(path) {
+function metaTagsDesc(desc) {
     let tags = [];
     const metaAttributes = [{'name':'description'}, {'property':'og:description'}, {'name':'twitter:description'}];
-    const content = path.data.root.description ? path.data.root.description : path.data.website.description;
-    tags.push(...addMultipleMetaTags(metaAttributes, content));
+    tags.push(...addMultipleMetaTags(metaAttributes, desc));
     return tags;
 }
 
-function metaTagsUrl(path) {
+function metaTagsUrl(url) {
     let tags = [];
     const metaAttributes = [{'property':'og:url'}, {'name':'twitter:domain'}];
-    const content = path.data.root.slug ? `${path.data.website.url}/${path.data.root.slug}` : path.data.website.url;
-    tags.push(...addMultipleMetaTags(metaAttributes, content));
+    tags.push(...addMultipleMetaTags(metaAttributes, url));
     return tags;
 }
 
-function metaTagsHeroImage(path) {
+function metaTagsHeroImage(heroImage, description) {
     let tags = [];
-
-    if (path.data.root.hasOwnProperty('heroImage')) {
         tags.push(metaTag({
             attribute: 'property', data: 'og:image',
-            content: path.data.root.heroImage
+            content: heroImage
         }));
         
         tags.push(metaTag({
             attribute: 'property', data: 'og:image:alt',
-            content: path.data.root.heroImage ? path.data.root.description : path.data.website.description
+            content: description
         }));
         
         tags.push(metaTag({
             attribute: 'name', data: 'twitter:image:src',
-            content: path.data.root.heroImage
+            content: heroImage
         }));
-    }
-        
     return tags;
 }
 
-function metaTagsTwitterCard(path) {
+function metaTagsTwitterCard(options) {
     let tags = [];
 
-    if (path.data.website.hasOwnProperty('twitterCard')) {
+    if (options.data.website.hasOwnProperty('twitterCard')) {
         tags.push(metaTag({
             attribute: 'name', data: 'twitter:card',
-            content: path.data.website.twitterCard
+            content: options.data.website.twitterCard
         }));
     }
-    if (path.data.website.hasOwnProperty('twitterSite')) {
+    if (options.data.website.hasOwnProperty('twitterSite')) {
         tags.push(metaTag({
             attribute: 'name', data: 'twitter:site',
-            content: path.data.website.twitterSite
+            content: options.data.website.twitterSite
         }));
     }
-    if (path.data.website.hasOwnProperty('twitterSite')) {
+    if (options.data.website.hasOwnProperty('twitterSite')) {
         tags.push(metaTag({
             attribute: 'name', data: 'twitter:creator',
-            content: path.data.website.twitterCreator
+            content: options.data.website.twitterCreator
         }));
     }
 
     return tags;
 }
 
-module.exports = function getMetaTags(path, options) {
+function getMetaTagsForArticles(options) {
     let linkMetaTagsList = [];
-
     // Meta Title Tags
-    linkMetaTagsList.push(...metaTagsTitle(path));
+    linkMetaTagsList.push(...metaTagsTitle(`${options.data.root.title}  | ${options.data.website.title}`));
 
     // Meta Desc Tags
-    linkMetaTagsList.push(...metaTagsDesc(path));
-
+    linkMetaTagsList.push(...metaTagsDesc(options.data.root.description));
+    
     // Url
-    linkMetaTagsList.push(...metaTagsUrl(path));
-
+    linkMetaTagsList.push(...metaTagsUrl(`${options.data.website.url}/${options.data.root.slug}`));
+    
     // Hero Image
-    linkMetaTagsList.push(...metaTagsHeroImage(path));
-
+    linkMetaTagsList.push(...metaTagsHeroImage(options.data.root.heroImage, options.data.root.description));
+    
     // Twitter Card
-    linkMetaTagsList.push(...metaTagsTwitterCard(path));
-
+    linkMetaTagsList.push(...metaTagsTwitterCard(options));
+    
     // Robots
     linkMetaTagsList.push(metaTag({
         attribute: 'property', data: 'og:type',
         content: 'website'
     }));
-
+    
     // Type
     linkMetaTagsList.push(metaTag({
         attribute: 'name', data: 'robots',
         content: 'index, follow'
     }));
-
+    
     // Author
-    if(path.data.root.author) {
+    if(options.data.root.author) {
         linkMetaTagsList.push(metaTag({
             attribute: 'name', data: 'author',
-            content: path.data.root.author
+            content: options.data.root.author
         }));
     }
-
+    
     // Canonical
     linkMetaTagsList.push(linktag({
         rel: 'canonical',
-        href: path.data.root.hasOwnProperty('content') ? `${path.data.website.url}/${path.data.root.slug}` : path.data.website.url
+        href: `${options.data.website.url}/${options.data.root.slug}`
     }));
-
+    
     // Favicon 
     linkMetaTagsList.push(linktag({
         rel: 'icon',
         type: 'image/png',
-        href: path.data.website.hasOwnProperty('favicon') ? path.data.website.favicon : `./favicon/favicon.ico`
+        href: options.data.website.hasOwnProperty('favicon') ? options.data.website.favicon : `/favicon/favicon.ico`
     }));
 
+    return linkMetaTagsList.join(' ');
+}
+
+function getMetaTagsIndex(options) {
+    let linkMetaTagsList = [];
+    // Meta Title Tags
+    linkMetaTagsList.push(...metaTagsTitle(options.data.website.title));
+
+    // Meta Desc Tags
+    linkMetaTagsList.push(...metaTagsDesc(options.data.website.description));
+    
+    // Url
+    linkMetaTagsList.push(...metaTagsUrl(options.data.website.url));
+    
+    // Hero Image
+    linkMetaTagsList.push(...metaTagsHeroImage('/logos/sm_darkblue_rounded.png', options.data.website.description));
+    
+    // Twitter Card
+    linkMetaTagsList.push(...metaTagsTwitterCard(options));
+    
+    // Robots
+    linkMetaTagsList.push(metaTag({
+        attribute: 'property', data: 'og:type',
+        content: 'website'
+    }));
+    
+    // Type
+    linkMetaTagsList.push(metaTag({
+        attribute: 'name', data: 'robots',
+        content: 'index, follow'
+    }));
+    
+    // Canonical
+    linkMetaTagsList.push(linktag({
+        rel: 'canonical',
+        href: options.data.website.url
+    }));
+    
+    // Favicon 
+    linkMetaTagsList.push(linktag({
+        rel: 'icon',
+        type: 'image/png',
+        href: options.data.website.hasOwnProperty('favicon') ? options.data.website.favicon : `/favicon/favicon.ico`
+    }));
 
     return linkMetaTagsList.join(' ');
+}
+
+function getMetaTagsDefault(options) {
+    let linkMetaTagsList = [];
+    // Hero Image
+    linkMetaTagsList.push(...metaTagsHeroImage('/logos/sm_darkblue_rounded.png', options.data.website.description));
+    
+    // Twitter Card
+    linkMetaTagsList.push(...metaTagsTwitterCard(options));
+    
+    // Robots
+    linkMetaTagsList.push(metaTag({
+        attribute: 'property', data: 'og:type',
+        content: 'website'
+    }));
+    
+    // Type
+    linkMetaTagsList.push(metaTag({
+        attribute: 'name', data: 'robots',
+        content: 'index, follow'
+    }));
+    // Favicon 
+    linkMetaTagsList.push(linktag({
+        rel: 'icon',
+        type: 'image/png',
+        href: options.data.website.hasOwnProperty('favicon') ? options.data.website.favicon : `/favicon/favicon.ico`
+    }));
+
+    return linkMetaTagsList.join(' ');
+}
+
+module.exports = function getMetaTags(type, options) {
+    if(options) {
+        switch(type) {
+            case 'articles':
+                return getMetaTagsForArticles(options);
+            case 'index':
+                return getMetaTagsIndex(options);
+            default:
+                return getMetaTagsDefault(options);
+        }
+    }
+    return getMetaTagsDefault(arguments[0]);
 }

@@ -36,7 +36,7 @@ class PostsApiController extends ApiBaseController {
         await new Promise(async (resolve, reject) => {
             for (const category of categories) {
                 const article = await knex.raw(`
-                SELECT '${category.row_number}' as id, '${category.name}' as category, '${category.accent_color}' as accentColor, a.title, a.hero_image as imageUrl, './' || a.slug as articleUrl
+                SELECT '${category.row_number}' as id, '${category.name}' as category, '${category.accent_color}' as accentColor, a.title, a.hero_image as imageUrl, '/' || a.slug as articleUrl
                 FROM Articles a
                 WHERE category_id = '${category.id}'
                 ORDER BY a.id DESC
@@ -53,7 +53,7 @@ class PostsApiController extends ApiBaseController {
 
     async getLastThree(req, res) {
         const posts = await knex.raw(`
-        SELECT a.id as id, c.name as category, c.accent_color as accentColor, a.title, a.hero_image as imageUrl, './' || slug as articleUrl
+        SELECT a.id as id, c.name as category, c.accent_color as accentColor, a.title, a.hero_image as imageUrl, '/' || slug as articleUrl
         FROM Articles a
         JOIN categories c ON
         c.id = a.category_id

@@ -13,6 +13,7 @@ module.exports = function () {
         .get('/', (req, res) => blogController.index(req, res))
         .get('/:slug', (req, res) => blogController.show(req, res))
         .get('/:slug/edit', (req, res) => blogController.edit(req, res))
+        .get('/tag/:tag', (req, res) => blogController.showByTag(req, res))
         // .post('/', blogController.create)
         // .get('/', blogController.getAll)
         // .get('/:item_id', blogController.getItem)

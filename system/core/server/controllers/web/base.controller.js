@@ -9,14 +9,14 @@ class BaseController {
     view(res, route, data = null, statusCode = 200) {
         try {
         if (res.app.locals.data.website) {
-                let payload = data;
-                res.status(statusCode);
-                return res.render(route, {
-                    ... payload,
+                const payload = {
+                    ...data,
                     nonce: res.nonce,
                     currentUrl: res.currentUrl,
                     hostUrl: res.hostUrl
-                });
+                }
+                res.status(statusCode);
+                return res.render(route, payload);
         } else {
             res.status(500);
             return res.send('Error getting theme settings.');
