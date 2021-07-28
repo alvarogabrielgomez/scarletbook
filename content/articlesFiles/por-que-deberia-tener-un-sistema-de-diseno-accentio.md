@@ -81,7 +81,9 @@ Se suele usar los términos **"Átomos, y Organismos"** para referirse a esto. L
 
 ## Conclusión
 
-Ahora ya entendemos la importancia del porqué tener un sistema de diseño en tu proyecto. Las guías, patrones y elementos reutilizables pueden ayudarte muchísimo a **optimizar** tu flujo de trabajo a la vez que aseguras una **buena experiencia de usuario** a lo largo de tu aplicación/es. Un sistema de diseño **requiere tiempo**, esfuerzo e investigación. Un sistema de diseño mal hecho, o mal ejecutado puede ocasionar resultados contrarios a los esperados, además de robarte tiempo que puedes estar dedicando a resolver otras prioridades. Siempre crea este tipo de sistema con un **equipo capacitado y dedicado** a esta tarea.
+Ahora ya entendemos la importancia del porqué tener un sistema de diseño en tu proyecto. Las guías, patrones y elementos reutilizables pueden ayudarte muchísimo a **optimizar** tu flujo de trabajo a la vez que aseguras una **buena experiencia de usuario** a lo largo de tu aplicación/es. Un sistema de diseño **requiere tiempo**, esfuerzo e investigación. 
+
+Un sistema de diseño mal hecho, o mal ejecutado puede ocasionar resultados contrarios a los esperados, además de robarte tiempo que puedes estar dedicando a resolver otras prioridades. Siempre crea este tipo de sistema con un **equipo capacitado y dedicado** a esta tarea.
 
 **En Accentio Studios** somos un grupo de profesionales que nos dedicamos a la experiencia de usuario, inclusive si eso requiere la creación de un **nuevo sistema de diseño para tu negocio**. Si quieres saber más información te invitamos a que entres [a nuestra pagina principal 😎💙](https://accentiostudios.com).
 
