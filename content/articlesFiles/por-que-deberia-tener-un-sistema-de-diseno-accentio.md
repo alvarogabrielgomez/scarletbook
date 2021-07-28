@@ -12,24 +12,24 @@ tags:
 
 Cuando un proyecto o aplicación comienza a crecer, sucede que se comienza a llenar de muchas pantallas y páginas. Justamente en este momento comienza a ser mas difícil mantener coherencia en como llevas a un usuario por una experiencia uniforme y robusta que identifique a tu marca. Debido a esto, una buena idea seria tener un sistema de diseño.
 
-Un sistema de diseño (o Design System) se puede definir como un **conjunto** definido y estructurado de **estándares** con el objetivo de mantener un diseño escalable, fácil de mantener y **reutilizable** basado en componentes y patrones que deciden como construir un sitio, aplicación, módulos, interfaz, entre otros.
+Un sistema de diseño (o Design System) se puede definir como un **conjunto** definido y estructurado de **estándares** con el objetivo de mantener un diseño escalable, fácil de mantener y **reutilizable** basado en componentes y patrones que deciden como construir un sitio, aplicación, módulo, interfaz, entre otros.
 
-Si estas interesado en saber más de porqué usar un sistema de diseño, y como en Accentio podemos ayudarte con eso te invitamos a continuar leyendo 😉
+Si estas interesado en saber más de porqué usar un sistema de diseño, y como en Accentio podemos ayudarte con eso, te invitamos a continuar leyendo 😉
 
 ## ¿Por qué usar un Sistema de Diseño?
 
-Cuando hablamos de un Sistema de Diseño este **abarca toda la aplicación**, desde la etapa de planeación el sistema de diseño ya esta involucrado. Es sumamente importante que para cuidar la experiencia de usuario se tenga un sistema de diseño que sea fácil de mantener, que **mejore progresivamente** con el tiempo, permitiéndote cambiar algo que no funcione o mejorar algo que ya funcionaba.
+Cuando hablamos de un Sistema de Diseño este **abarca toda la aplicación**. Ya desde la etapa de planeación el sistema de diseño esta involucrado. Es sumamente importante, que para cuidar la experiencia de usuario, se tenga un sistema de diseño que sea fácil de mantener y que **mejore progresivamente** con el tiempo, permitiéndote cambiar algo que no funciona o mejorar algo que ya funcionaba.
 
 Las ventajas que te puede dar un sistema de diseño son muchas. Vamos a ir mencionando varias y luego podrás considerar si en tu proyecto ya es momento de comenzar a pensar en un sistema de diseño.
 
 ###  Tu aplicación puede ser desarrollada mas rápido
 
-Un Sistema de Diseño te da la **versatilidad** de reutilizar componentes ya previamente creados, y posicionarlos cada vez que necesites alguna interacción parecida a lo largo de tu aplicación. De esta manera puedes **generar emociones positivas** en tu usuario al ya reconocer algún elemento que ya sabia como se usaba. 
+Un Sistema de Diseño te da la **versatilidad** de reutilizar componentes ya previamente creados, y posicionarlos cada vez que necesites alguna interacción parecida a lo largo de tu aplicación. De esta manera puedes **generar emociones positivas** en tu usuario al ya reconocer algún elemento que ya sabía como se usaba. 
 
 Hablamos de esto previamente en [nuestro post de Emotional Design (O Diseño Emocional)](https://blog.accentiostudios.com/que-es-emotional-design)
 
 ### Puedes centrarte en resolver otros problemas complicados
-Cuando tienes bien definido como puedes construir tu UI reutilizando patrones de tu sistema, puedes perder menos tiempo arreglando el diseño y mas tiempo creando features (o características) nuevas en tu aplicación o algún otro problemas que necesita de atención de ti o del equipo.
+Cuando tienes bien definido como puedes construir tu UI reutilizando patrones de tu sistema, puedes perder menos tiempo arreglando el diseño y mas tiempo creando features (o características) nuevas en tu aplicación o algún otro problemas que necesita de tu atención o la del equipo.
 
 ### Crea un lenguaje unificado entre tus productos
 Con un Sistema de Diseño consigues que cada uno de tus productos mantenga un **lenguaje en común** que permita identificarlos como parte de un todo y de tu marca. Un buen ejemplo de esto puede ser Google, Microsoft o Apple. Reconoces que usas un producto de ellos solamente por su lenguaje visual.
@@ -37,23 +37,23 @@ Con un Sistema de Diseño consigues que cada uno de tus productos mantenga un **
 ![Algunos componentes básicos de Material Design de Google](https://i.imgur.com/oeoq4MD.jpg)
 
 ### Crea un lenguaje unificado entre los equipos desarrolladores
-Continuando el punto anterior, un lenguaje común **evita perdidas de tiempo** reinventando la rueda. Si existe un lenguaje común todos sabemos de lo que estamos hablando, seguimos el mismo camino y evitamos incoherencias y malos entendidos. Incluso si partes del equipo tienen diferencias geográficas.
+Continuando el punto anterior, un lenguaje común **evita perdidas de tiempo** , no hay necesidad de ir reinventando la rueda. Si existe un lenguaje común todos sabremos de que estamos hablando, seguiremos el mismo camino, evitaremos incoherencias y malos entendidos. Incluso si partes del equipo tienen diferencias geográficas.
 
 ### Funciona como documentación para nuevos integrantes del equipo
 
-Al tener un sistema de diseño, nuevas personas que puedan entrar a futuro y retomen el desarrollo de la aplicación tendrán un lugar de donde pueden sacar referencias, y entender como se supone que debería ser el lenguaje usado al momento de construir la aplicación.
+Al tener un sistema de diseño, nuevas personas que puedan entrar a futuro y retomen el desarrollo de la aplicación tendrán un lugar de donde sacar referencias, y entender como se supone que debería ser el lenguaje usado al momento de construir la aplicación.
 
 ## Cuando NO usar un Sistema de Diseño
-Hay algunas veces que no es necesario tener un sistema de diseño. Crear y mantener un sistema de diseño es una tarea que lleva tiempo, dedicación y **constante mejora**. Cuando el proyecto es muy pequeño, o no tiene intención de escalar su complejidad, crear un sistema de diseño puede no ser la prioridad.
+Hay algunas veces que no es necesario tener un sistema de diseño. Crear y mantener un sistema de diseño es una tarea que lleva tiempo, dedicación y **constante mejora**. Cuando el proyecto es muy pequeño, o no tiene la intención de escalar su complejidad, crear un sistema de diseño puede no ser la prioridad.
 
-Ahora, si tu intención es escalar, o mantener coherencia entre aplicaciones, si tu objetivo es aumentar la complejidad, un sistema de diseño comienza a tener sentido para ti.
+Ahora, si tu intención es escalar, o mantener coherencia entre aplicaciones; si tu objetivo es aumentar la complejidad, un sistema de diseño comienza a tener sentido para ti.
 
 ## Partes de un Sistema de Diseño
 
 Un sistema de diseño consta de varias partes, el conjunto de estas forman un repositorio de diseño:
 
 ### Guías de Estilo
-Estas especifican como implementar los componentes del sistema, tienen referencias visuales, principios al momento de crear interfaces u otras guías como se tiene que ver algo. Normalmente estas guías también vienen con fragmentos ya construidos usando varios componentes para poner en contexto y ayudar a explicar mejor.
+Estas especifican como implementar los componentes del sistema, tienen referencias visuales y principios al momento de crear interfaces. Normalmente estas guías también vienen con fragmentos ya construidos usando varios componentes para poner en contexto y ayudar a explicar mejor.
 
 Las guías de estilo pueden contener incluso tonos de voz al momento de escribir,  estándares de interacción, recomendaciones, etc.
 
