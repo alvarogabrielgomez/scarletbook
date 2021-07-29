@@ -8,4 +8,6 @@ console.log(`App mode: ${process.env.NODE_ENV}`);
 console.log('------------------');
 console.log('');
 
+process.chdir('./');
+
 require('./scarletbook');

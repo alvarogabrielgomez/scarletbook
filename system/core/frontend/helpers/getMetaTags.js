@@ -100,7 +100,7 @@ function getMetaTagsForArticles(options) {
     linkMetaTagsList.push(...metaTagsUrl(`${options.data.website.url}/${options.data.root.slug}`));
     
     // Hero Image
-    linkMetaTagsList.push(...metaTagsHeroImage(options.data.root.heroImage, options.data.root.description));
+    linkMetaTagsList.push(...metaTagsHeroImage(`${options.data.website.url}/${options.data.root.slug}/og.png`, options.data.root.description));
     
     // Twitter Card
     linkMetaTagsList.push(...metaTagsTwitterCard(options));

@@ -17,6 +17,7 @@ function loadConfig() {
     nconf.file('scarletbook', path.join(scarletConfigPath, 'config.scarletbook.json'));
 
     nconf.set('env', env);
+    nconf.set('assetsFolder', path.normalize(path.join(process.cwd(), '/system/core/server/scarletbook')));
 
     // Transform all relative path to absolute path
     nconf.makePathsAbsolute = utils.makePathsAbsolute.bind(nconf);

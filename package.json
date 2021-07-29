@@ -22,6 +22,7 @@
   "author": "Alvaro Gabriel <alvaro@accentiostudios.com>",
   "license": "ISC",
   "dependencies": {
+    "canvas": "^2.8.0",
     "chalk": "^2.4.2",
     "commander": "^7.2.0",
     "compression": "^1.7.4",
