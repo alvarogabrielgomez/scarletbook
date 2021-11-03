@@ -1,11 +1,12 @@
 ---
-title: Facebook cambia de nombre: Qué es el metaverse y la polémica con Francis Haugen
+title: Facebook cambia de nombre. Qué es el metaverse y la polémica con Francis Haugen
 description: Todos hemos quedado impactados con el nuevo cambio de nombre de la empresa Facebook a Meta. ¿Realmente existe un trasfondo de este acontecimiento? ¿Qué significa el nuevo proyecto que Zuckerberg quiere poner en marcha? ¡Aquí te explicamos todos los detalles!
 heroimage: https://i.imgur.com/qMdC63J.jpg
 authorId: 2
-categoryId: 1
+categoryId: 4
 tags:
   - News
+  - Facebook
 ---
 
 Todos hemos quedado impactados con el nuevo cambio de nombre de la empresa Facebook a Meta. ¿Realmente existe un trasfondo de este acontecimiento? ¿Qué significa el nuevo proyecto que Zuckerberg quiere poner en marcha? ¡Aquí te explicamos todos los detalles!
