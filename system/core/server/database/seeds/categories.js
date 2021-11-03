@@ -29,6 +29,13 @@ exports.seed = async function(knex) {
           accentColor: '#45d6ce',
           brandLogo: './public/logo-header-3.png'
         },
+        {
+          id: 4,
+          name: 'News',
+          heroImage: './public/img/photo.jpg',
+          accentColor: '#1fa5c7',
+          brandLogo: './public/logo-header-1.png' 
+        },
       ]);
     });
 };

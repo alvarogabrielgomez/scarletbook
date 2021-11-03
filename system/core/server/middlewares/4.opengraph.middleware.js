@@ -8,7 +8,6 @@ class OpenGraphMiddleware {
         return '/:articleSlug/og.png';
     }
 
-    
     get funcs() {
         return [
             async (req, res, next) => {
@@ -22,7 +21,7 @@ class OpenGraphMiddleware {
 
                 } catch (e){
                     next(e);
-                }
+                }``
             }
         ]
     }

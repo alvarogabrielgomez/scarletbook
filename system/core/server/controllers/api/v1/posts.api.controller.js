@@ -1,4 +1,4 @@
-const ApiBaseController = require('./apiBaseController');
+const ApiBaseController = require('./base.api.controller');
 const { BaseModel } = require('../../../models/baseModel');
 const Articles = require('../../../models/articles.model');
 const knex = BaseModel.knex();

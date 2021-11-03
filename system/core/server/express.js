@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const utils = require('../shared/utils');
-const registerAllMiddlewares = require('./utils/registerAllMiddlewares');
+const { registerAllMiddlewares } = require('./middlewares');
 const app = express();
 const oneHour = 3600000; 
 

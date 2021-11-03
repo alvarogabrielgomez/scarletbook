@@ -22,8 +22,9 @@ module.exports = function getArticleJsonLd(options) {
           },
         "headline":  options.data.root.title ? options.data.root.title : options.data.website.title,
         "image": [
-            options.data.root.hasOwnProperty('heroImage') ? options.data.root.heroImage : '',
+            options.data.root.hasOwnProperty('heroImage') ? `${options.data.website.url}/${options.data.root.slug}/og.png` : '',
         ],
+
         "datePublished": datePublished,
         "dateCreated": datePublished,
         "dateModified": dateModified,

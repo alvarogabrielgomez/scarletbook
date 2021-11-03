@@ -1,3 +1,5 @@
+const { apiControllers, viewsController } = require('../controllers');
+
 class RouterRegister {
 
     get routes() { 
